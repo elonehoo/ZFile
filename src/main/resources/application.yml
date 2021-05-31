@@ -1,0 +1,25 @@
+server:
+  port: 4799
+  servlet:
+    context-path: /zfile
+  tomcat:
+    max-http-form-post-size: 104857600MB
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://1.15.153.38:3306/file-admin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: hcy
+    password: HCYhcy@0901
+    type: com.alibaba.druid.pool.DruidDataSource
+logging:
+  level:
+    root: warn
+    com.inet: debug
+  file:
+    path: log/zfile.log
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+
+
+
+
