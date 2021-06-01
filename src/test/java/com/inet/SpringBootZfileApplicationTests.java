@@ -1,8 +1,12 @@
 package com.inet;
 
+import cn.hutool.system.SystemUtil;
 import cn.hutool.system.oshi.OshiUtil;
+import com.zfile.code.entity.systemInfo.cpu.vo.CentralProcessor;
+import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import oshi.hardware.Display;
 import oshi.hardware.HWDiskStore;
 import oshi.hardware.NetworkIF;
 
@@ -12,7 +16,7 @@ class SpringBootZfileApplicationTests {
 
     @Test
     void contextLoads_01() {
-
+        System.out.println(new SystemInfo().getMemory());
     }
 
     @Test
@@ -22,7 +26,7 @@ class SpringBootZfileApplicationTests {
         System.out.println( "[系统内存](OshiUtil.getMemory.getTotal) ==> " + (OshiUtil.getMemory().getTotal() / 1024 / 1024 / 1024) + "G");
         System.out.println( "[系统剩余内存](OshiUtil.getMemory.getAvailable) ==> " + (OshiUtil.getMemory().getAvailable() / 1024 / 1024 / 1024) + "G");
         System.out.println("---------------------------");
-        for (HWDiskStore diskStore : OshiUtil.getHardware().getDiskStores()) {
+        for (HWDiskStore diskStore : OshiUtil.getDiskStores()) {
             System.out.println(diskStore);
         }
         System.out.println("---------------------------");

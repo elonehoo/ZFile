@@ -1,374 +1,92 @@
-2021-05-31 09:04:56.788  INFO 6437 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6437 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 09:04:56.801 DEBUG 6437 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 09:04:56.805  INFO 6437 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 09:04:57.237  INFO 6437 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.299 seconds (JVM running for 3.886)
-2021-05-31 09:16:31.728 ERROR 6460 --- [http-nio-4799-exec-8] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/zfile] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.zfile.code.service.UserService.count()" because "this.userService" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "com.zfile.code.service.UserService.count()" because "this.userService" is null
-	at com.zfile.code.entity.user.po.User.count(User.java:74) ~[classes/:na]
-	at com.zfile.code.stents.impl.BaseStentsImpl.getInitialization(BaseStentsImpl.java:41) ~[classes/:na]
-	at com.zfile.code.controller.BaseController.getInitialization(BaseController.java:42) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
-
-2021-05-31 09:17:08.701 ERROR 6464 --- [http-nio-4799-exec-1] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/zfile] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.baomidou.mybatisplus.core.mapper.BaseMapper.selectCount(com.baomidou.mybatisplus.core.conditions.Wrapper)" because the return value of "com.baomidou.mybatisplus.extension.service.IService.getBaseMapper()" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "com.baomidou.mybatisplus.core.mapper.BaseMapper.selectCount(com.baomidou.mybatisplus.core.conditions.Wrapper)" because the return value of "com.baomidou.mybatisplus.extension.service.IService.getBaseMapper()" is null
-	at com.baomidou.mybatisplus.extension.service.IService.count(IService.java:270) ~[mybatis-plus-extension-3.4.2.jar:3.4.2]
-	at com.baomidou.mybatisplus.extension.service.IService.count(IService.java:261) ~[mybatis-plus-extension-3.4.2.jar:3.4.2]
-	at com.zfile.code.entity.user.po.User.count(User.java:75) ~[classes/:na]
-	at com.zfile.code.stents.impl.BaseStentsImpl.getInitialization(BaseStentsImpl.java:41) ~[classes/:na]
-	at com.zfile.code.controller.BaseController.getInitialization(BaseController.java:42) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
-
-2021-05-31 09:17:36.099 ERROR 6467 --- [http-nio-4799-exec-1] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/zfile] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.baomidou.mybatisplus.core.mapper.BaseMapper.selectCount(com.baomidou.mybatisplus.core.conditions.Wrapper)" because the return value of "com.baomidou.mybatisplus.extension.service.IService.getBaseMapper()" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "com.baomidou.mybatisplus.core.mapper.BaseMapper.selectCount(com.baomidou.mybatisplus.core.conditions.Wrapper)" because the return value of "com.baomidou.mybatisplus.extension.service.IService.getBaseMapper()" is null
-	at com.baomidou.mybatisplus.extension.service.IService.count(IService.java:270) ~[mybatis-plus-extension-3.4.2.jar:3.4.2]
-	at com.baomidou.mybatisplus.extension.service.IService.count(IService.java:261) ~[mybatis-plus-extension-3.4.2.jar:3.4.2]
-	at com.zfile.code.entity.user.po.User.count(User.java:74) ~[classes/:na]
-	at com.zfile.code.stents.impl.BaseStentsImpl.getInitialization(BaseStentsImpl.java:41) ~[classes/:na]
-	at com.zfile.code.controller.BaseController.getInitialization(BaseController.java:42) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
-
-2021-05-31 09:19:20.909 ERROR 6481 --- [http-nio-4799-exec-1] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/zfile] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.baomidou.mybatisplus.core.mapper.BaseMapper.selectCount(com.baomidou.mybatisplus.core.conditions.Wrapper)" because the return value of "com.baomidou.mybatisplus.extension.service.IService.getBaseMapper()" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "com.baomidou.mybatisplus.core.mapper.BaseMapper.selectCount(com.baomidou.mybatisplus.core.conditions.Wrapper)" because the return value of "com.baomidou.mybatisplus.extension.service.IService.getBaseMapper()" is null
-	at com.baomidou.mybatisplus.extension.service.IService.count(IService.java:270) ~[mybatis-plus-extension-3.4.2.jar:3.4.2]
-	at com.baomidou.mybatisplus.extension.service.IService.count(IService.java:261) ~[mybatis-plus-extension-3.4.2.jar:3.4.2]
-	at com.zfile.code.entity.user.po.User.count(User.java:77) ~[classes/:na]
-	at com.zfile.code.stents.impl.BaseStentsImpl.getInitialization(BaseStentsImpl.java:41) ~[classes/:na]
-	at com.zfile.code.controller.BaseController.getInitialization(BaseController.java:42) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.6.jar:5.3.6]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.45.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.6.jar:5.3.6]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.45.jar:9.0.45]
-	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
-
-2021-05-31 09:50:17.540  INFO 6552 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6552 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 09:50:17.543 DEBUG 6552 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 09:50:17.546  INFO 6552 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 09:50:17.826  INFO 6552 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.072 seconds (JVM running for 3.473)
-2021-05-31 10:01:38.400  INFO 6566 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6566 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:01:38.403 DEBUG 6566 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:01:38.418  INFO 6566 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:01:38.729  INFO 6566 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.069 seconds (JVM running for 3.083)
-2021-05-31 10:01:57.088  INFO 6569 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6569 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:01:57.091 DEBUG 6569 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:01:57.095  INFO 6569 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:01:57.419  INFO 6569 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.153 seconds (JVM running for 3.211)
-2021-05-31 10:24:08.953  INFO 6636 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6636 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:24:08.955 DEBUG 6636 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:24:08.959  INFO 6636 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:24:09.264  INFO 6636 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.187 seconds (JVM running for 3.148)
-2021-05-31 10:26:52.801  INFO 6641 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6641 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:26:52.802 DEBUG 6641 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:26:52.805  INFO 6641 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:26:53.077  INFO 6641 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.143 seconds (JVM running for 3.283)
-2021-05-31 10:28:39.120  INFO 6646 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6646 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:28:39.122 DEBUG 6646 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:28:39.126  INFO 6646 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:28:39.406  INFO 6646 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 0.99 seconds (JVM running for 3.139)
-2021-05-31 10:32:40.558  INFO 6651 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6651 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:32:40.560 DEBUG 6651 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:32:40.564  INFO 6651 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:32:40.863  INFO 6651 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.175 seconds (JVM running for 3.135)
-2021-05-31 10:33:09.697  INFO 6655 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6655 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:33:09.699 DEBUG 6655 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:33:09.703  INFO 6655 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:33:09.995  INFO 6655 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.03 seconds (JVM running for 3.015)
-2021-05-31 10:33:38.820  INFO 6661 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6661 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:33:38.822 DEBUG 6661 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:33:38.839  INFO 6661 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:33:39.093  INFO 6661 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.061 seconds (JVM running for 3.374)
-2021-05-31 10:35:21.761  INFO 6669 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6669 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:35:21.764 DEBUG 6669 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:35:21.766  INFO 6669 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:35:22.064  INFO 6669 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.161 seconds (JVM running for 3.13)
-2021-05-31 10:35:48.667  INFO 6673 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6673 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:35:48.669 DEBUG 6673 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:35:48.672  INFO 6673 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:35:48.991  INFO 6673 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.089 seconds (JVM running for 3.152)
-2021-05-31 10:37:08.377  INFO 6679 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6679 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:37:08.378 DEBUG 6679 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:37:08.383  INFO 6679 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:37:08.652  INFO 6679 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.032 seconds (JVM running for 2.991)
-2021-05-31 10:38:44.637  INFO 6688 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6688 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:38:44.640 DEBUG 6688 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:38:44.648  INFO 6688 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:38:44.925  INFO 6688 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.233 seconds (JVM running for 3.867)
-2021-05-31 10:47:13.018  INFO 6711 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6711 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:47:13.020 DEBUG 6711 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:47:13.023  INFO 6711 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:47:13.310  INFO 6711 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.146 seconds (JVM running for 3.148)
-2021-05-31 10:47:47.189  INFO 6715 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6715 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:47:47.191 DEBUG 6715 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:47:47.211  INFO 6715 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:47:47.481  INFO 6715 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 0.909 seconds (JVM running for 2.884)
-2021-05-31 10:52:32.681  INFO 6735 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6735 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:52:32.683 DEBUG 6735 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:52:32.692  INFO 6735 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:52:32.962  INFO 6735 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 0.959 seconds (JVM running for 2.916)
-2021-05-31 10:53:16.982  INFO 6739 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6739 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:53:16.984 DEBUG 6739 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:53:16.986  INFO 6739 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:53:17.270  INFO 6739 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.134 seconds (JVM running for 2.987)
-2021-05-31 10:57:31.806  INFO 6750 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6750 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:57:31.807 DEBUG 6750 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:57:31.810  INFO 6750 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:57:32.008  INFO 6750 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.053 seconds (JVM running for 3.068)
-2021-05-31 10:59:48.312  INFO 6759 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6759 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 10:59:48.314 DEBUG 6759 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 10:59:48.317  INFO 6759 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 10:59:48.582  INFO 6759 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.075 seconds (JVM running for 3.465)
-2021-05-31 11:29:39.826  INFO 6847 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6847 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 11:29:39.830 DEBUG 6847 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 11:29:39.833  INFO 6847 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 11:29:40.323  INFO 6847 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.187 seconds (JVM running for 3.496)
-2021-05-31 11:32:56.800  INFO 6874 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 6874 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 11:32:56.803 DEBUG 6874 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 11:32:56.806  INFO 6874 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 11:32:57.041  INFO 6874 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 0.918 seconds (JVM running for 3.182)
-2021-05-31 12:59:59.187  INFO 661 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 661 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 12:59:59.190 DEBUG 661 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 12:59:59.192  INFO 661 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 12:59:59.632  INFO 661 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.403 seconds (JVM running for 4.233)
-2021-05-31 13:19:41.619  INFO 722 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 722 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
-2021-05-31 13:19:41.621 DEBUG 722 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
-2021-05-31 13:19:41.631  INFO 722 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-31 13:19:41.970  INFO 722 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.314 seconds (JVM running for 3.562)
-2021-05-31 14:23:09.480 ERROR 867 --- [Druid-ConnectionPool-Create-582875899] com.alibaba.druid.pool.DruidDataSource   : create connection SQLException, url: jdbc:mysql://1.15.153.38:3306/file-admin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai, errorCode 0, state 08S01
-
-com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:833) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:453) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558) ~[druid-1.1.10.jar:1.1.10]
-	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623) ~[druid-1.1.10.jar:1.1.10]
-	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468) ~[druid-1.1.10.jar:1.1.10]
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500) ~[na:na]
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481) ~[na:na]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:546) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:710) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:687) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:136) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:469) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:174) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1350) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:157) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:953) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:823) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	... 6 common frames omitted
-Caused by: java.io.EOFException: Can not read response from server. Expected to read 4 bytes, read 0 bytes before connection was unexpectedly lost.
-	at com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:67) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:63) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:45) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:540) ~[mysql-connector-java-8.0.23.jar:8.0.23]
-	... 15 common frames omitted
-
+2021-06-01 08:47:03.489  INFO 1999 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 1999 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 08:47:03.499 DEBUG 1999 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 08:47:03.506  INFO 1999 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 08:47:04.044  INFO 1999 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.209 seconds (JVM running for 3.819)
+2021-06-01 08:47:59.572  INFO 2006 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2006 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 08:47:59.575 DEBUG 2006 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 08:47:59.596  INFO 2006 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 08:47:59.886  INFO 2006 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.038 seconds (JVM running for 3.305)
+2021-06-01 08:48:18.425  INFO 2010 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2010 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 08:48:18.427 DEBUG 2010 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 08:48:18.433  INFO 2010 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 08:48:18.780  INFO 2010 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.267 seconds (JVM running for 3.316)
+2021-06-01 09:00:38.161  INFO 2092 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2092 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 09:00:38.163 DEBUG 2092 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 09:00:38.166  INFO 2092 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 09:00:38.460  INFO 2092 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.092 seconds (JVM running for 3.128)
+2021-06-01 09:04:11.719  INFO 2112 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2112 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 09:04:11.720 DEBUG 2112 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 09:04:11.727  INFO 2112 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 09:04:12.047  INFO 2112 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.279 seconds (JVM running for 3.257)
+2021-06-01 09:05:54.858  INFO 2116 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2116 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 09:05:54.861 DEBUG 2116 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 09:05:54.864  INFO 2116 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 09:05:55.156  INFO 2116 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.094 seconds (JVM running for 3.233)
+2021-06-01 09:08:31.949  INFO 2132 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2132 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 09:08:31.951 DEBUG 2132 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 09:08:31.955  INFO 2132 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 09:08:32.237  INFO 2132 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.149 seconds (JVM running for 3.391)
+2021-06-01 09:09:32.628  INFO 2138 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2138 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 09:09:32.629 DEBUG 2138 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 09:09:32.632  INFO 2138 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 09:09:32.898  INFO 2138 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.027 seconds (JVM running for 3.141)
+2021-06-01 10:46:33.226  INFO 2477 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2477 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 10:46:33.229 DEBUG 2477 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 10:46:33.232  INFO 2477 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 10:46:33.592  INFO 2477 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.325 seconds (JVM running for 3.555)
+2021-06-01 10:46:56.358  INFO 2482 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2482 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 10:46:56.360 DEBUG 2482 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 10:46:56.370  INFO 2482 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 10:46:56.696  INFO 2482 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.386 seconds (JVM running for 3.21)
+2021-06-01 10:48:10.213  INFO 2486 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2486 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 10:48:10.217 DEBUG 2486 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 10:48:10.220  INFO 2486 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 10:48:10.534  INFO 2486 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.155 seconds (JVM running for 3.123)
+2021-06-01 11:00:18.566  INFO 2499 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2499 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 11:00:18.568 DEBUG 2499 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 11:00:18.571  INFO 2499 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 11:00:18.864  INFO 2499 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.085 seconds (JVM running for 3.166)
+2021-06-01 11:24:01.806  INFO 2532 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2532 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 11:24:01.813 DEBUG 2532 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 11:24:01.816  INFO 2532 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 11:24:02.106  INFO 2532 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.242 seconds (JVM running for 3.519)
+2021-06-01 17:47:36.116  INFO 2769 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2769 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 17:47:36.119 DEBUG 2769 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 17:47:36.123  INFO 2769 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 17:47:36.501  INFO 2769 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.277 seconds (JVM running for 3.442)
+2021-06-01 18:40:47.249  INFO 2837 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2837 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:40:47.251 DEBUG 2837 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:40:47.253  INFO 2837 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:40:47.524  INFO 2837 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.499 seconds (JVM running for 3.43)
+2021-06-01 18:44:46.626  INFO 2847 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2847 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:44:46.632 DEBUG 2847 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:44:46.636  INFO 2847 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:44:46.925  INFO 2847 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.167 seconds (JVM running for 3.137)
+2021-06-01 18:45:36.807  INFO 2853 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2853 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:45:36.810 DEBUG 2853 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:45:36.813  INFO 2853 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:45:37.116  INFO 2853 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.072 seconds (JVM running for 3.186)
+2021-06-01 18:46:50.863  INFO 2860 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2860 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:46:50.898 DEBUG 2860 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:46:50.905  INFO 2860 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:46:51.268  INFO 2860 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.427 seconds (JVM running for 3.569)
+2021-06-01 18:47:06.134  INFO 2866 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2866 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:47:06.135 DEBUG 2866 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:47:06.139  INFO 2866 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:47:06.448  INFO 2866 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.179 seconds (JVM running for 3.281)
+2021-06-01 18:47:45.152  INFO 2871 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2871 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:47:45.154 DEBUG 2871 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:47:45.158  INFO 2871 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:47:45.396  INFO 2871 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.199 seconds (JVM running for 3.181)
+2021-06-01 18:49:07.085  INFO 2877 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2877 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:49:07.087 DEBUG 2877 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:49:07.089  INFO 2877 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:49:07.356  INFO 2877 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.204 seconds (JVM running for 3.177)
+2021-06-01 18:49:33.612  INFO 2883 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2883 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:49:33.614 DEBUG 2883 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:49:33.617  INFO 2883 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:49:33.920  INFO 2883 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.094 seconds (JVM running for 3.202)
+2021-06-01 18:49:56.249  INFO 2889 --- [main] c.inet.SpringBootZfileApplicationTests   : Starting SpringBootZfileApplicationTests using Java 15.0.1 on huchengyedeMacBook-Pro.local with PID 2889 (started by huchengye in /Volumes/1/JAVA/spring-boot-zfile-with)
+2021-06-01 18:49:56.252 DEBUG 2889 --- [main] c.inet.SpringBootZfileApplicationTests   : Running with Spring Boot v2.4.5, Spring v5.3.6
+2021-06-01 18:49:56.255  INFO 2889 --- [main] c.inet.SpringBootZfileApplicationTests   : No active profile set, falling back to default profiles: default
+2021-06-01 18:49:56.583  INFO 2889 --- [main] c.inet.SpringBootZfileApplicationTests   : Started SpringBootZfileApplicationTests in 1.202 seconds (JVM running for 3.199)
