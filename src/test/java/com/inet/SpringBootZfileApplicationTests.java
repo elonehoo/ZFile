@@ -16,7 +16,7 @@ class SpringBootZfileApplicationTests {
 
     @Test
     void contextLoads_01() {
-        System.out.println(new SystemInfo().getMemory());
+
     }
 
     @Test

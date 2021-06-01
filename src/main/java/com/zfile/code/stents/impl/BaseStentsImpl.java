@@ -1,11 +1,10 @@
 package com.zfile.code.stents.impl;
 
 import cn.hutool.core.io.FileTypeUtil;
-import cn.hutool.system.oshi.OshiUtil;
 import com.xiaoTools.core.result.Result;
 import cn.hutool.core.io.FileUtil;
 import com.zfile.code.entity.file.vo.FileVO;
-import com.zfile.code.entity.user.po.User;
+import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;
 import com.zfile.code.service.UserService;
 import com.zfile.code.stents.BaseStents;
 import org.springframework.stereotype.Service;
@@ -93,7 +92,7 @@ public class BaseStentsImpl implements BaseStents {
      */
     @Override
     public Result getSystemInfo(String path) {
-        return null;
+        return new Result().result200(new SystemInfo(),path);
     }
 }
 

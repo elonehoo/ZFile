@@ -33,4 +33,5 @@ public class Network {
      * 例如 ==> fe80:0:0:0:1806:22e9:c2c6:5e64/64
      */
     private String ipv6Address;
+
 }

@@ -47,12 +47,6 @@ public class CentralProcessor {
     private String utilizationRate;
 
     /**
-     * 型号信息
-     * 例如 ==> Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz
-     */
-    private String modelInformation;
-
-    /**
      * 温度
      * 例如 ==> 57.25°C
      */

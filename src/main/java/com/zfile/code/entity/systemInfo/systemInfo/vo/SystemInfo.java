@@ -10,6 +10,7 @@ import com.zfile.code.entity.systemInfo.os.vo.OperatingSystem;
 import lombok.*;
 import oshi.hardware.GlobalMemory;
 import oshi.hardware.HWDiskStore;
+import oshi.hardware.NetworkIF;
 import oshi.hardware.Sensors;
 import oshi.util.FormatUtil;
 
@@ -67,6 +68,8 @@ public class SystemInfo {
         setCentralProcessor();
         setDistS();
         setMemory();
+        setNetworks();
+        setOperatingSystem();
     }
 
     /**
@@ -86,9 +89,8 @@ public class SystemInfo {
                 info.getSys() + "%",
                 info.getUsed() + "%",
                 info.getFree() + "%",
-                String.valueOf(Double.parseDouble(format.format(100.0D - info.getFree()))) + "%",
-                info.getCpuModel(),
-                String.valueOf(sensors.getCpuTemperature()) + " °C",
+                Double.parseDouble(format.format(100.0D - info.getFree())) + "%",
+                sensors.getCpuTemperature() + " °C",
                 Arrays.toString(sensors.getFanSpeeds()));
     }
 
@@ -126,5 +128,30 @@ public class SystemInfo {
         this.memory = new Memory(
                 FormatUtil.formatBytes(memory.getAvailable()),
                 FormatUtil.formatBytes(memory.getTotal()));
+    }
+
+    public void setNetworks() {
+        List<Network> list = new ArrayList<>();
+        for (NetworkIF networkIf : OshiUtil.getNetworkIFs()) {
+            //设置IPV4地址
+            StringBuilder ipv4 = new StringBuilder();
+            //设置IPV6地址
+            StringBuilder ipv6 = new StringBuilder();
+            for (String s : networkIf.getIPv4addr()) {
+                ipv4.append(s);
+            }
+            for (String s : networkIf.getIPv6addr()) {
+                ipv6.append(s);
+            }
+            list.add(new Network(networkIf.getMacaddr(), ipv4.toString(),ipv6.toString()));
+        }
+        this.networks = list;
+    }
+
+    public void setOperatingSystem() {
+        StringBuilder osName = new StringBuilder();
+        oshi.software.os.OperatingSystem os = OshiUtil.getOs();
+        osName.append(os.getManufacturer()).append(' ').append(os.getFamily()).append(' ').append(os.getVersionInfo());
+        this.operatingSystem = new OperatingSystem(osName.toString());
     }
 }
