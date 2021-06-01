@@ -130,6 +130,14 @@ public class SystemInfo {
                 FormatUtil.formatBytes(memory.getTotal()));
     }
 
+    /**
+     * [获取了用户的网卡信息](Get the user's network card information)
+     * @description: zh - 获取了用户的网卡信息
+     * @description: en - Get the user's network card information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/1 8:46 下午
+    */
     public void setNetworks() {
         List<Network> list = new ArrayList<>();
         for (NetworkIF networkIf : OshiUtil.getNetworkIFs()) {
@@ -148,6 +156,14 @@ public class SystemInfo {
         this.networks = list;
     }
 
+    /**
+     * [获取系统的名称](Gets the name of the system)
+     * @description: zh - 获取系统的名称
+     * @description: en - Gets the name of the system
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/1 8:50 下午
+    */
     public void setOperatingSystem() {
         StringBuilder osName = new StringBuilder();
         oshi.software.os.OperatingSystem os = OshiUtil.getOs();
