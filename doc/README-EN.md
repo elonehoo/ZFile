@@ -1,7 +1,7 @@
 <h1 align="center">
 ZFile backend project
 </h1>
-<div align="center"><a href="" >🛰️中文文档</a></div>
+<div align="center"><a href="https://github.com/xiaoxunyao/ZFile/blob/master/README.md" >🛰️中文文档</a></div>
 
 ## Introduction
 

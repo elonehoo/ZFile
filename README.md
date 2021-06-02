@@ -1,7 +1,7 @@
 <h1 align="center">
 ZFile后端项目
 </h1>
-<div align="center"><a href="" >🛰️English document</a></div>
+<div align="center"><a href="https://github.com/xiaoxunyao/ZFile/blob/master/doc/README-EN.md" >🛰️English document</a></div>
 
 ## 引言
 
