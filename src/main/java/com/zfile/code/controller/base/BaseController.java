@@ -1,17 +1,18 @@
-package com.zfile.code.controller;
+package com.zfile.code.controller.base;
 
 import com.xiaoTools.core.result.Result;
+
 import com.zfile.code.stents.BaseStents;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.v3.oas.annotations.Operation;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-
 
 /**
  * 基础Controller
