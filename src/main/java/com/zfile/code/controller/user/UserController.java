@@ -41,4 +41,21 @@ public class UserController {
         return userStents.register(user,"/user/register");
     }
 
+    /**
+     * [通过输入的邮箱发送验证码，验证码保留十五分钟。](Send the verification code through the input email, and keep the verification code for 15 minutes.)
+     * @description: zh - 通过输入的邮箱发送验证码，验证码保留十五分钟。
+     * @description: en - Send the verification code through the input email, and keep the verification code for 15 minutes.
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/2 1:12 下午
+     * @param email: [需要发送验证码的邮箱](Email address to send verification code)
+     * @return com.xiaoTools.core.result.Result
+    */
+    @Operation(summary = "通过输入的邮箱发送验证码，验证码保留十五分钟。")
+    @GetMapping("/verification")
+    public Result getVerification(@RequestParam(value = "email",defaultValue = "")String email){
+        return userStents.verification(email,"/user/verification");
+    }
+
+
 }

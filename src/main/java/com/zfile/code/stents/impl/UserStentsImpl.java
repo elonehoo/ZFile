@@ -43,4 +43,20 @@ public class UserStentsImpl implements UserStents {
             return null;
         }
     }
+
+    /**
+     * [通过输入的邮箱发送一个存储时间为15分钟的验证码](Send a verification code with a storage time of 15 minutes through the input mailbox)
+     * @description: zh - 通过输入的邮箱发送一个存储时间为15分钟的验证码
+     * @description: en - Send a verification code with a storage time of 15 minutes through the input mailbox
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/2 1:16 下午
+     * @param email: [需要发送验证码的邮箱](Email address to send verification code)
+     * @param path: [URL 路径](url path)
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result verification(String email, String path) {
+        return null;
+    }
 }
