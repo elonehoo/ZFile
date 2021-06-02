@@ -13,4 +13,15 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    /**
+     * [判断用户是否已经初始化成功了](Judge whether the user has successfully initialized)
+     * @description: zh - 判断用户是否已经初始化成功了
+     * @description: en - Judge whether the user has successfully initialized
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/2 10:25 上午
+     * @return java.lang.Boolean
+    */
+    Boolean initialization();
+
 }

@@ -37,16 +37,8 @@ public class BaseStentsImpl implements BaseStents {
      */
     @Override
     public Result getInitialization(String path) {
-        //获取数据表中的总用户数据
-        int count = userService.count();
-        //如果 「 count > 0 」 则早已经初始化成功，反之则初始化失败。
-        if ( count > 0 ){
-            //返回「 true 」则表示无需初始化
-            return new Result().result200(true,path);
-        }else {
-            //返回「 false 」则表示需要初始化
-            return new Result().result200(false,path);
-        }
+        return new Result().result200(userService.initialization(),path);
+
     }
 
     /**
