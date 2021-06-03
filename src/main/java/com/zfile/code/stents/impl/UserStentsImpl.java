@@ -22,6 +22,7 @@ public class UserStentsImpl implements UserStents {
     @Resource
     private UserService userService;
 
+
     /**
      * [如果用户没有进行初始化操作，则进行初始化操作](If the user does not perform the initialization operation, perform the initialization operation)
      * @description: zh - 如果用户没有进行初始化操作，则进行初始化操作
@@ -57,6 +58,7 @@ public class UserStentsImpl implements UserStents {
      */
     @Override
     public Result verification(String email, String path) {
+
         return null;
     }
 }
