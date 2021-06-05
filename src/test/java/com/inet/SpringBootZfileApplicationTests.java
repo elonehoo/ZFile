@@ -1,9 +1,12 @@
 package com.inet;
 
+import cn.hutool.cache.impl.TimedCache;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.system.SystemUtil;
 import cn.hutool.system.oshi.OshiUtil;
+import com.xiaoTools.core.randomUtil.RandomUtil;
 import com.zfile.SpringBootZfileApplication;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.systemInfo.cpu.vo.CentralProcessor;
@@ -34,6 +37,19 @@ class SpringBootZfileApplicationTests {
 
     @Resource
     private SendMail sendMail;
+
+    /**
+     * 测试04
+     * 测试模块：缓存cache的使用
+     * 测试结果：ok
+     */
+    @Test
+    void contextLoads_03(){
+        TimedCache<String , String> cache = new TimedCache<String , String>(60 * 15);
+        //存入74bd
+        cache.put("123", RandomUtil.randomStringLow(4));
+        System.out.println(cache.get("123"));
+    }
 
     /**
      * 测试03
