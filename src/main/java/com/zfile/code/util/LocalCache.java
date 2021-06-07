@@ -29,7 +29,9 @@ public class LocalCache {
     public static TimedCache<String, String> timedCache = CacheUtil.newTimedCache(DEFAULT_TIMEOUT);
 
     static {
-        //启动定时任务
+        /**
+         * 启动定时任务
+         */
         timedCache.schedulePrune(CLEAN_TIMEOUT);
     }
 

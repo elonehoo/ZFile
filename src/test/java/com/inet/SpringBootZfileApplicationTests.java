@@ -2,12 +2,18 @@ package com.inet;
 
 import cn.hutool.cache.impl.TimedCache;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileTypeUtil;
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.util.HashUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.system.SystemUtil;
 import cn.hutool.system.oshi.OshiUtil;
 import com.xiaoTools.core.randomUtil.RandomUtil;
 import com.zfile.SpringBootZfileApplication;
+import com.zfile.code.entity.cipher.po.Cipher;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.systemInfo.cpu.vo.CentralProcessor;
 import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;
@@ -21,6 +27,7 @@ import oshi.hardware.HWDiskStore;
 import oshi.hardware.NetworkIF;
 
 import javax.annotation.Resource;
+import java.io.File;
 
 
 /**
@@ -37,6 +44,11 @@ class SpringBootZfileApplicationTests {
 
     @Resource
     private SendMail sendMail;
+
+    @Test
+    void contextLoads_04(){
+
+    }
 
     /**
      * 测试04
