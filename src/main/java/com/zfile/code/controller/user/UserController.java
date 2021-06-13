@@ -26,8 +26,6 @@ public class UserController {
     @Resource
     private UserStents userStents;
 
-
-
     /**
      * [如果用户尚未进行初始化操作，则进行初始化操作的第一步，注册用户基本的信息](If the user has not done the initialization operation, the first step of the initialization operation is to register the basic information of the user)
      * @description: zh - 如果用户尚未进行初始化操作，则进行初始化操作的第一步，注册用户基本的信息

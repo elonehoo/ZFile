@@ -50,4 +50,10 @@ public class RegisterUser implements Serializable {
      */
     @ApiModelProperty(value = "昵称" )
     private String nickName;
+
+    /**
+     * 初始化的验证码
+     */
+    @ApiModelProperty(value = "验证码" )
+    private String code;
 }

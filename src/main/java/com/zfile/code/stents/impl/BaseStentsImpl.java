@@ -1,7 +1,7 @@
 package com.zfile.code.stents.impl;
 
 import cn.hutool.core.io.FileTypeUtil;
-import com.xiaoTools.core.fileUtil.FileUtil;
+import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.file.vo.FileVO;
 import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;

@@ -9,6 +9,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zfile.code.service.UserService;
 import com.zfile.code.service.impl.UserServiceImpl;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -68,4 +69,8 @@ public class User implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date gmtModified;
 
+    public User(String email, String nickName) {
+        this.email = email;
+        this.nickName = nickName;
+    }
 }
