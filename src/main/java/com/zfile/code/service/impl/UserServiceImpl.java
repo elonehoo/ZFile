@@ -6,6 +6,8 @@ import com.zfile.code.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * <p>
  * 用户基本信息表 服务实现类
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    @Resource
+    private UserMapper userMapper;
 
     /**
      * [判断用户是否已经初始化成功了](Judge whether the user has successfully initialized)
@@ -33,5 +38,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //3.返回「 true 」则表示无需初始化
         //4.返回「 false 」则表示需要初始化
         return this.count() > 0;
+    }
+
+    /**
+     * [通过用户的加密邮件获取用户的主键](Get the user's primary key through the user's encrypted e-mail)
+     * @description: zh - 通过用户的加密邮件获取用户的主键
+     * @description: en - Get the user's primary key through the user's encrypted e-mail
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/24 12:25 下午
+     * @param emailHex: 用户的加密邮件
+     * @return java.lang.String
+     */
+    @Override
+    public String getByEmail(String emailHex) {
+        return userMapper.selectByEmail(emailHex);
     }
 }

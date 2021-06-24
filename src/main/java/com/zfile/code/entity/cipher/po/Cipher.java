@@ -17,7 +17,11 @@ import lombok.experimental.Accessors;
  * @author HCY
  * @since 2021-04-28
  */
-@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("tbl_cipher")
@@ -58,5 +62,8 @@ public class Cipher implements Serializable {
     private Date gmtModified;
 
 
-
+    public Cipher(String userId, String cipher) {
+        this.userId = userId;
+        this.cipher = cipher;
+    }
 }

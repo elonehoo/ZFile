@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zfile.code.mapper.UserMapper">
 
+<!--    通过用户的加密邮件获取用户的主键 -->
+    <select id="selectByEmail" resultType="java.lang.String">
+        SELECT
+            users.id AS id
+        FROM
+            tbl_user AS users
+        WHERE
+            users.email = #{email}
+            LIMIT 1;
+    </select>
 </mapper>

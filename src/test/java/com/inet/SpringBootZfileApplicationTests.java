@@ -1,13 +1,14 @@
 package com.inet;
 
 import cn.hutool.cache.impl.TimedCache;
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.util.HashUtil;
-import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.lang.Validator;
+import cn.hutool.core.util.*;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.system.SystemUtil;
 import cn.hutool.system.oshi.OshiUtil;
@@ -18,6 +19,7 @@ import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.systemInfo.cpu.vo.CentralProcessor;
 import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;
 import com.zfile.code.service.CipherService;
+import com.zfile.code.util.LocalCache;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +49,7 @@ class SpringBootZfileApplicationTests {
 
     @Test
     void contextLoads_04(){
-
+        ReflectUtil
     }
 
     /**
@@ -57,10 +59,9 @@ class SpringBootZfileApplicationTests {
      */
     @Test
     void contextLoads_03(){
-        TimedCache<String , String> cache = new TimedCache<String , String>(60 * 15);
-        //存入74bd
-        cache.put("123", RandomUtil.randomStringLow(4));
-        System.out.println(cache.get("123"));
+        LocalCache.put("123","123",15);
+        LocalCache.put("123","12356",15);
+        System.out.println(LocalCache.get("123"));
     }
 
     /**

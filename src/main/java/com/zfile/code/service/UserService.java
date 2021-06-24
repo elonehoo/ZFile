@@ -24,4 +24,15 @@ public interface UserService extends IService<User> {
     */
     Boolean initialization();
 
+    /**
+     * [通过用户的加密邮件获取用户的主键](Get the user's primary key through the user's encrypted e-mail)
+     * @description: zh - 通过用户的加密邮件获取用户的主键
+     * @description: en - Get the user's primary key through the user's encrypted e-mail
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/24 12:25 下午
+     * @param emailHex: 用户的加密邮件
+     * @return java.lang.String
+    */
+    String getByEmail(String emailHex);
 }

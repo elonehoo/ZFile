@@ -6,6 +6,7 @@ import cn.hutool.extra.mail.MailUtil;
 import com.xiaoTools.core.randomUtil.RandomUtil;
 import com.xiaoTools.core.regular.validation.Validation;
 import com.xiaoTools.core.result.Result;
+import com.zfile.code.entity.cipher.po.Cipher;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.user.dto.RegisterUser;
 import com.zfile.code.entity.user.po.User;
@@ -71,11 +72,20 @@ public class UserStentsImpl implements UserStents {
             }
             //进行邮箱sm4算法加密
             String emailHex = SmUtil.sm4().encryptHex(user.getEmail());
-            //进行密码MD5加密
-            String cipher = SecureUtil.md5(user.getOnePassword());
             //判断是否存储成功
-            userService.save(new User(emailHex,user.getNickName()));
-            return null;
+            if (!userService.save(new User(emailHex, user.getNickName()))) {
+                return new Result().result409("用户注册失败",path);
+            }
+            //1. 通过邮箱获取用户主键
+            String userID = userService.getByEmail(emailHex);
+            //2. 进行密码MD5加密
+            String cipher = SecureUtil.md5(user.getOnePassword());
+            if (!cipherService.save(new Cipher(userID, cipher))) {
+                if (userService.removeById(userID)) {
+                    return new Result().result409("用户注册失败",path);
+                }
+            }
+            return new Result().result200("用户注册成功",path);
         }
     }
 
