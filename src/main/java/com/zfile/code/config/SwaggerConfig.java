@@ -54,7 +54,7 @@ public class SwaggerConfig {
                 //每次请求加载header
                 .in(ParameterType.HEADER)
                 //头标签
-                .name("Token")
+                .name("satoken")
                 .required(false)
                 .query(param -> param.model(model -> model.scalarModel(ScalarType.STRING)));
         return Collections.singletonList(parameterBuilder.build());

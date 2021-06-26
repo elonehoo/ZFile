@@ -1,5 +1,8 @@
 package com.zfile.code.entity.file.dto;
 
+import lombok.*;
+import lombok.experimental.Accessors;
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -11,6 +14,13 @@ import java.io.Serializable;
  * @author XiaoXunYao
  * @since 2021/6/26 11:04 上午
 */
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 public class Mkdir implements Serializable {
 
     @Serial

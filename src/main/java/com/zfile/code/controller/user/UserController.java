@@ -1,7 +1,6 @@
 package com.zfile.code.controller.user;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
-import cn.dev33.satoken.stp.StpUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.user.dto.LoginUser;
@@ -78,10 +77,10 @@ public class UserController {
     }
 
     @SaCheckLogin
-    @Operation(summary = "创建文件目录，逻辑暂时有问题，暂时不可使用")
     @PostMapping("/mkdir")
+    @Operation(summary = "创建文件目录，逻辑暂时有问题，暂时不可使用")
     public Result postMkdir(@RequestBody Mkdir mkdir){
-        return userStents.mkdir(token,mkdir,"zfile/user/mkdir");
+        return userStents.mkdir(mkdir,"zfile/user/mkdir");
     }
 
 }

@@ -4,11 +4,13 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.extra.mail.MailUtil;
+import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.randomUtil.RandomUtil;
 import com.xiaoTools.core.regular.validation.Validation;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.aes.Encryption;
 import com.zfile.code.entity.cipher.po.Cipher;
+import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -154,5 +157,25 @@ public class UserStentsImpl implements UserStents {
         //调用 sa-token 的登陆操作
         StpUtil.login(loginUser.getId());
         return new Result().result200("登陆成功",path);
+    }
+
+    /**
+     * [创建文件目录](Create file directory)
+     * @description: zh - 创建文件目录
+     * @description: en - Create file directory
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/26 5:11 下午
+     * @param mkdir: 文件目录的地址和名字
+     * @param path: URL 路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result mkdir(Mkdir mkdir, String path) {
+        //进行目录地址拼接
+        String filePath = mkdir.getAddress() + mkdir.getFileName();
+        return FileUtil.mkdir(new File(filePath)) ?
+                new Result().result200("创建目录成功",path) :
+                new Result().result409("创建目录失败",path);
     }
 }
