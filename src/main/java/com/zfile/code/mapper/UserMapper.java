@@ -24,4 +24,17 @@ public interface UserMapper extends BaseMapper<User> {
      * @return java.lang.String
      */
     String selectByEmail(String email);
+
+    /**
+     * [通过账号和密码进行登陆操作](Login through account and password)
+     * @description: zh - 通过账号和密码进行登陆操作
+     * @description: en - Login through account and password
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/26 2:43 下午
+     * @param account: 账号
+     * @param cipher: 密码
+     * @return com.zfile.code.entity.user.po.User
+     */
+    User selectByLogin(String account, String cipher);
 }

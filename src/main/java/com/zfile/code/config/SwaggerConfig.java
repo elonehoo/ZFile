@@ -27,9 +27,9 @@ public class SwaggerConfig {
                 //开启个人信息
                 .apiInfo(apiInfo())
                 .select()
-                .build()
+                .build();
                 //每一个请求都可以添加header
-                .globalRequestParameters(globalRequestParameters());
+//                .globalRequestParameters(globalRequestParameters());
     }
 
 

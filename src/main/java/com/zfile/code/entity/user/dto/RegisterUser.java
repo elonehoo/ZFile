@@ -2,9 +2,9 @@ package com.zfile.code.entity.user.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import javax.validation.constraints.Email;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -31,6 +31,7 @@ public class RegisterUser implements Serializable {
      * 邮箱
      */
     @ApiModelProperty(value = "邮箱" )
+    @Email(message = "您的邮箱可能不正确，请您检查后重新进行注册。")
     private String email;
 
     /**

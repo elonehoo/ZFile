@@ -2,6 +2,7 @@ package com.zfile.code.stents;
 
 
 import com.xiaoTools.core.result.Result;
+import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
 
 /**
@@ -39,4 +40,17 @@ public interface UserStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result verification(String email, String path);
+
+    /**
+     * [登陆操作](Login operation)
+     * @description: zh - 登陆操作
+     * @description: en - Login operation
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/26 2:39 下午
+     * @param user: 用户的账号 and 密码
+     * @param path: URL path
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result login(LoginUser user, String path);
 }

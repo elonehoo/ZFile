@@ -1,6 +1,10 @@
 package com.zfile.code.controller.user;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.stp.StpUtil;
 import com.xiaoTools.core.result.Result;
+import com.zfile.code.entity.file.dto.Mkdir;
+import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
 import com.zfile.code.stents.UserStents;
 import io.swagger.annotations.Api;
@@ -8,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * [用户的控制层](User control layer)
@@ -37,8 +42,8 @@ public class UserController {
     */
     @Operation(summary = "如果用户尚未进行初始化操作，则进行初始化操作的第一步，注册用户基本的信息")
     @PostMapping("/register")
-    public Result postRegister(@RequestBody RegisterUser user){
-        return userStents.register(user,"/user/register");
+    public Result postRegister(@Valid @RequestBody RegisterUser user){
+        return userStents.register(user,"zfile/user/register");
     }
 
     /**
@@ -53,8 +58,30 @@ public class UserController {
     */
     @Operation(summary = "通过输入的邮箱发送验证码，验证码保留十五分钟。")
     @GetMapping("/verification")
-    public Result getVerification(@RequestParam(value = "email",defaultValue = "")String email){
-        return userStents.verification(email,"/user/verification");
+    public Result getVerification(@RequestParam(value = "email",defaultValue = "") String email){
+        return userStents.verification(email,"zfile/user/verification");
+    }
+
+    /**
+     * [用户输入账号和密码进行登陆操作](The user enters the account number and password to log in)
+     * @description: zh - 用户输入账号和密码进行登陆操作
+     * @description: en - The user enters the account number and password to log in
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/26 4:29 下午
+     * @param user: 用户输入的账号和密码
+     * @return com.xiaoTools.core.result.Result
+    */
+    @PostMapping("/login")
+    public Result postLogin(@RequestBody LoginUser user){
+        return userStents.login(user,"zfile/user/login");
+    }
+
+    @SaCheckLogin
+    @Operation(summary = "创建文件目录，逻辑暂时有问题，暂时不可使用")
+    @PostMapping("/mkdir")
+    public Result postMkdir(@RequestBody Mkdir mkdir){
+        return userStents.mkdir(token,mkdir,"zfile/user/mkdir");
     }
 
 }

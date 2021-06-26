@@ -28,12 +28,8 @@ public class LocalCache {
      */
     public static TimedCache<String, String> timedCache = CacheUtil.newTimedCache(DEFAULT_TIMEOUT);
 
-    static {
-        /**
-         * 启动定时任务
-         */
-        timedCache.schedulePrune(CLEAN_TIMEOUT);
-    }
+    //启动定时任务
+    static { timedCache.schedulePrune(CLEAN_TIMEOUT); }
 
     public static void put(String key,String value) {
         timedCache.put(key, value);
@@ -44,10 +40,15 @@ public class LocalCache {
     }
 
     /**
-     * 禁止延迟缓存 isUpdateLastAccess = false
-     * @param key
-     * @param isUpdateLastAccess
-     */
+     * 禁止延迟缓存
+     * @description: zh - 禁止延迟缓存 isUpdateLastAccess = false
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/24 1:15 下午
+     * @param key: 存储的键
+     * @param isUpdateLastAccess: 更新是否是最后一次访问
+     * @return java.lang.String
+    */
     public static String get(String key,boolean isUpdateLastAccess){
         return timedCache.get(key,isUpdateLastAccess);
     }

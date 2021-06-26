@@ -1,23 +1,30 @@
 package com.zfile.code.stents.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.extra.mail.MailUtil;
 import com.xiaoTools.core.randomUtil.RandomUtil;
 import com.xiaoTools.core.regular.validation.Validation;
 import com.xiaoTools.core.result.Result;
+import com.zfile.code.entity.aes.Encryption;
 import com.zfile.code.entity.cipher.po.Cipher;
 import com.zfile.code.entity.mail.vo.SendMail;
+import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
 import com.zfile.code.entity.user.po.User;
 import com.zfile.code.service.CipherService;
 import com.zfile.code.service.UserService;
 import com.zfile.code.stents.UserStents;
 import com.zfile.code.util.LocalCache;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * [外观设计模式用户层次分层](User hierarchy of exterior design pattern)
@@ -29,6 +36,8 @@ import javax.annotation.Resource;
 */
 @Service
 public class UserStentsImpl implements UserStents {
+    
+    private final Logger log = LoggerFactory.getLogger(UserStentsImpl.class);
 
     @Resource
     private UserService userService;
@@ -38,6 +47,9 @@ public class UserStentsImpl implements UserStents {
 
     @Resource
     private SendMail sendMail;
+
+    @Resource
+    private Encryption encryption;
 
     /**
      * [如果用户没有进行初始化操作，则进行初始化操作](If the user does not perform the initialization operation, perform the initialization operation)
@@ -51,17 +63,13 @@ public class UserStentsImpl implements UserStents {
      * @return com.xiaoTools.core.result.Result
      */
     @Override
-    @ExceptionHandler(value = Exception.class)
     public Result register(RegisterUser user, String path) {
         //判断用户是否已经初始化过了。
-        if (!userService.initialization()) {
+        if (userService.initialization()) {
             return new Result().result401("用户已经初始化过了，不需要继续进行初始化",path);
         }else {
             //完成注册的操作，还需考虑一点是否需要验证码
-            //判断邮箱是否正确。
-            if (!Validation.isEmail(user.getEmail())) {
-                return new Result().result401("您的邮箱可能不正确，请您检查后重新进行注册。",path);
-            }
+            log.debug("验证码",LocalCache.get(user.getEmail()));
             //校验验证码
             if (!LocalCache.get(user.getEmail()).equals(user.getCode())) {
                 return new Result().result305("验证码不正确，请您重新输入",path);
@@ -71,7 +79,7 @@ public class UserStentsImpl implements UserStents {
                 return new Result().result400("两次输入的密码不一致，请重新输入。",path);
             }
             //进行邮箱sm4算法加密
-            String emailHex = SmUtil.sm4().encryptHex(user.getEmail());
+            String emailHex = encryption.createAes().encryptHex((user.getEmail()));
             //判断是否存储成功
             if (!userService.save(new User(emailHex, user.getNickName()))) {
                 return new Result().result409("用户注册失败",path);
@@ -118,5 +126,33 @@ public class UserStentsImpl implements UserStents {
                 ,false);
         LocalCache.put(email,code,15);
         return new Result().result200("ZFile初始化验证码发送成功，请在十五分钟内完成注册哦",path);
+    }
+
+    /**
+     * [登陆操作](Login operation)
+     * @description: zh - 登陆操作
+     * @description: en - Login operation
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/26 2:39 下午
+     * @param user: 用户的账号 and 密码
+     * @param path: URL path
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result login(LoginUser user, String path) {
+        //0. 将账号进行sm4加密
+        //1. 将密码进行md5加密
+        //2. 进行数据库查询
+        User loginUser = userService.login(
+                encryption.createAes().encryptHex(user.getAccount()),
+                SecureUtil.md5(user.getCipher()));
+        //判断是否登陆成功
+        if (loginUser == null){
+            return new Result().result503("账号或者密码错误，无法登陆",path);
+        }
+        //调用 sa-token 的登陆操作
+        StpUtil.login(loginUser.getId());
+        return new Result().result200("登陆成功",path);
     }
 }

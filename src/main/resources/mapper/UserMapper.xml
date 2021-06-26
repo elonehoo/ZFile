@@ -12,4 +12,26 @@
             users.email = #{email}
             LIMIT 1;
     </select>
+
+<!--    通过账号和密码进行登陆操作 -->
+    <select id="selectByLogin" resultType="com.zfile.code.entity.user.po.User">
+        SELECT
+            users.id AS id,
+            users.email AS email,
+            users.photo AS photo,
+            users.nickName AS nickName,
+            users.gmt_create AS gmtCreate,
+            users.gmt_modified AS gmtModified
+        FROM
+            tbl_user AS users
+        LEFT JOIN
+            tbl_cipher AS ciphers
+            ON
+            users.id = ciphers.user_id
+        WHERE
+            users.email = #{account}
+        AND
+            ciphers.cipher = #{cipher}
+        LIMIT 1;
+    </select>
 </mapper>

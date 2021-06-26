@@ -1,35 +1,20 @@
 package com.inet;
 
-import cn.hutool.cache.impl.TimedCache;
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.io.FileTypeUtil;
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.lang.Validator;
-import cn.hutool.core.util.*;
+import cn.hutool.crypto.SmUtil;
+import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.extra.mail.MailUtil;
-import cn.hutool.system.SystemUtil;
 import cn.hutool.system.oshi.OshiUtil;
-import com.xiaoTools.core.randomUtil.RandomUtil;
 import com.zfile.SpringBootZfileApplication;
-import com.zfile.code.entity.cipher.po.Cipher;
+import com.zfile.code.entity.aes.Encryption;
 import com.zfile.code.entity.mail.vo.SendMail;
-import com.zfile.code.entity.systemInfo.cpu.vo.CentralProcessor;
-import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;
-import com.zfile.code.service.CipherService;
 import com.zfile.code.util.LocalCache;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import oshi.hardware.Display;
 import oshi.hardware.HWDiskStore;
 import oshi.hardware.NetworkIF;
 
 import javax.annotation.Resource;
-import java.io.File;
 
 
 /**
@@ -47,9 +32,34 @@ class SpringBootZfileApplicationTests {
     @Resource
     private SendMail sendMail;
 
+    @Resource
+    private Encryption aes;
+
+    /**
+     * 测试06
+     * 测试模块: 测试密钥加密和解密
+     * 测试结果: ok
+     */
+    @Test
+    void contextLoads_05(){
+        AES aesAes = this.aes.createAes();
+        String email1 = "huchengyea@163.com";
+        String email2 = "huchengyea@163.com";
+        System.out.println(aesAes.encryptHex(email1));
+        System.out.println(aesAes.decryptStr(aesAes.encryptHex(email2)));
+    }
+
+    /**
+     * 测试05
+     * 测试模块: 「SM4」国密算法 加密测试
+     * 测试结果: error
+     */
     @Test
     void contextLoads_04(){
-        ReflectUtil
+        String email1 = "huchengyea@163.com";
+        String email2 = "huchengyea@163.com";
+        System.out.println(SmUtil.sm4().encryptHex(email1));
+        System.out.println(SmUtil.sm4().encryptHex(email2));
     }
 
     /**

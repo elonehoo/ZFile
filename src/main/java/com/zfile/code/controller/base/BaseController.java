@@ -40,7 +40,7 @@ public class BaseController {
     @Operation(summary = "判断是否已经完善了初始化")
     @GetMapping(value = "/initialization",produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getInitialization(){
-        return baseStents.getInitialization("/base/initialization");
+        return baseStents.getInitialization("zfile/base/initialization");
     }
 
     /**
@@ -56,7 +56,7 @@ public class BaseController {
     })
     @GetMapping(value = "/see",produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getSee(@RequestParam(value = "path",defaultValue = "/") String path){
-        return baseStents.getSeeContent(path,"/base/see");
+        return baseStents.getSeeContent(path,"zfile/base/see");
     }
 
     /**
@@ -71,7 +71,7 @@ public class BaseController {
     @Operation(summary = "获取系统的性能信息")
     @GetMapping(value = "/system",produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getSystem(){
-        return baseStents.getSystemInfo("/base/system");
+        return baseStents.getSystemInfo("zfile/base/system");
     }
 
 
