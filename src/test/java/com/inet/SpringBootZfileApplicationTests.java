@@ -6,6 +6,7 @@ import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.system.oshi.OshiUtil;
+import com.xiaoTools.core.strUtil.StrUtil;
 import com.zfile.SpringBootZfileApplication;
 import com.zfile.code.entity.aes.Encryption;
 import com.zfile.code.entity.mail.vo.SendMail;
@@ -36,6 +37,26 @@ class SpringBootZfileApplicationTests {
 
     @Resource
     private Encryption aes;
+
+    /**
+     * 测试07
+     * 测试模块: 测试字符串截取
+     * 测试结果: unknown
+     */
+    @Test
+    void contextLoads_06(){
+        String a = "/User/home/Downloads";
+        String b = "/User/home/Downloads/";
+        System.out.println(StrUtil.sub(a,a.length()-1,a.length()));
+        System.out.println(StrUtil.sub(b,b.length()-1,b.length()));
+        System.out.println("---------------------------------------------");
+        String c = "/demo";
+        String d = "demo";
+        System.out.println(StrUtil.sub(c,0,1));
+        System.out.println(StrUtil.sub(c, 1, c.length()));
+        System.out.println(StrUtil.sub(d,0,1));
+        System.out.println(StrUtil.sub(d, 1, c.length()));
+    }
 
     /**
      * 测试06

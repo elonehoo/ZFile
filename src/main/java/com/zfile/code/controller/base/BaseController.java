@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 基础Controller
@@ -31,6 +32,9 @@ public class BaseController {
     @Resource
     private BaseStents baseStents;
 
+    @Resource
+    private HttpServletRequest request;
+
     /**
      * 判断是否已经完善了初始化
      * @author HCY
@@ -40,7 +44,7 @@ public class BaseController {
     @Operation(summary = "判断是否已经完善了初始化")
     @GetMapping(value = "/initialization",produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getInitialization(){
-        return baseStents.getInitialization("zfile/base/initialization");
+        return baseStents.getInitialization(request.getRequestURI());
     }
 
     /**
@@ -56,7 +60,7 @@ public class BaseController {
     })
     @GetMapping(value = "/see",produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getSee(@RequestParam(value = "path",defaultValue = "/") String path){
-        return baseStents.getSeeContent(path,"zfile/base/see");
+        return baseStents.getSeeContent(path,request.getRequestURI());
     }
 
     /**
@@ -71,7 +75,7 @@ public class BaseController {
     @Operation(summary = "获取系统的性能信息")
     @GetMapping(value = "/system",produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getSystem(){
-        return baseStents.getSystemInfo("zfile/base/system");
+        return baseStents.getSystemInfo(request.getRequestURI());
     }
 
 

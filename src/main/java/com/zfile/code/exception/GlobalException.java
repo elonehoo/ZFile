@@ -1,5 +1,6 @@
 package com.zfile.code.exception;
 
+import cn.dev33.satoken.exception.NotLoginException;
 import cn.hutool.extra.mail.MailException;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.stents.impl.UserStentsImpl;
@@ -54,6 +55,7 @@ public class GlobalException {
     */
     @ExceptionHandler(value = Exception.class)
     public Result allException(HttpServletRequest request, Exception e){
+        log.info(e.toString());
         return new Result().result500("出现特殊异常，请联系管理员",request.getRequestURI());
     }
 
@@ -89,8 +91,23 @@ public class GlobalException {
     */
     @ExceptionHandler(value = MailException.class)
     public Result mailException(MailException e, HttpServletRequest request){
-        log.warn(e.getMessage());
         return new Result().result403("邮箱产生了错误，可以检查您输入的邮箱是否拥有操作的服务",request.getRequestURI());
+    }
+
+    /**
+     * [产生了未登录的错误](An unregistered error occurred)
+     * @description: zh - 产生了未登录的错误
+     * @description: en - An unregistered error occurred
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/27 12:40 下午
+     * @param e: [异常处理](exception handling)
+     * @param request: [请求的URI](The URI of the request)
+     * @return com.xiaoTools.core.result.Result
+    */
+    @ExceptionHandler(value = NotLoginException.class)
+    public Result notLoginException(NotLoginException e,HttpServletRequest request){
+        return new Result().result503("未登陆，无法进行操作",request.getRequestURI());
     }
 
 }
