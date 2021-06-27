@@ -81,4 +81,16 @@ public interface UserStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result touch(Touch touch, String path);
+
+    /**
+     * [退出操作](Exit operation)
+     * @description: zh - 退出操作
+     * @description: en - Exit operation
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/27 6:43 下午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result signOut(String path);
 }

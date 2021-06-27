@@ -158,6 +158,7 @@ public class UserStentsImpl implements UserStents {
         }
         //调用 sa-token 的登陆操作
         StpUtil.login(loginUser.getId());
+        log.info("登陆成功");
         return new Result().result200("登陆成功",path);
     }
 
@@ -210,5 +211,23 @@ public class UserStentsImpl implements UserStents {
                 new Result().result200("创建文件的成功",path) :
                 new Result().result409("创建文件失败",path);
 
+    }
+
+    /**
+     * [退出操作](Exit operation)
+     * @description: zh - 退出操作
+     * @description: en - Exit operation
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/27 6:43 下午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result signOut(String path) {
+        log.info(StpUtil.getTokenValue());
+        StpUtil.logoutByTokenValue(StpUtil.getTokenValue());
+        log.info("退出成功");
+        return new Result().result200("退出成功",path);
     }
 }

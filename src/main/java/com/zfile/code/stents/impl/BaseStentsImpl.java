@@ -7,6 +7,8 @@ import com.zfile.code.entity.file.vo.FileVO;
 import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;
 import com.zfile.code.service.UserService;
 import com.zfile.code.stents.BaseStents;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +23,8 @@ import java.util.List;
 */
 @Service
 public class BaseStentsImpl implements BaseStents {
+
+    private final Logger log = LoggerFactory.getLogger(BaseStentsImpl.class);
 
     /**
      * 用户服务接口层

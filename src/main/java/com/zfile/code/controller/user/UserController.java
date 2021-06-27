@@ -77,6 +77,7 @@ public class UserController {
      * @return com.xiaoTools.core.result.Result
     */
     @PostMapping("/login")
+    @Operation(summary = "用户输入账号和密码进行登陆操作")
     public Result postLogin(@RequestBody LoginUser user){
         return userStents.login(user,request.getRequestURI());
     }
@@ -116,4 +117,19 @@ public class UserController {
         return userStents.touch(touch,request.getRequestURI());
     }
 
+    /**
+     * [退出登陆](Log out)
+     * @description: zh - 退出登陆
+     * @description: en - Log out
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/27 6:45 下午
+     * @return com.xiaoTools.core.result.Result
+    */
+    @SaCheckLogin
+    @GetMapping("/signOut")
+    @Operation(summary = "退出登陆")
+    public Result getSignOut(){
+        return userStents.signOut(request.getRequestURI());
+    }
 }
