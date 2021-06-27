@@ -41,7 +41,7 @@ class SpringBootZfileApplicationTests {
     /**
      * 测试07
      * 测试模块: 测试字符串截取
-     * 测试结果: unknown
+     * 测试结果: ok
      */
     @Test
     void contextLoads_06(){
