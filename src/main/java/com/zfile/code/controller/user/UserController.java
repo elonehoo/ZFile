@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -29,6 +30,9 @@ public class UserController {
 
     @Resource
     private UserStents userStents;
+
+    @Resource
+    private HttpServletRequest request;
 
     /**
      * [如果用户尚未进行初始化操作，则进行初始化操作的第一步，注册用户基本的信息](If the user has not done the initialization operation, the first step of the initialization operation is to register the basic information of the user)
@@ -76,11 +80,21 @@ public class UserController {
         return userStents.login(user,"zfile/user/login");
     }
 
+    /**
+     * [创建文件目录](Create file directory)
+     * @description: zh - 创建文件目录
+     * @description: en - Create file directory
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/27 10:15 上午
+     * @param mkdir: 创建文件地址
+     * @return com.xiaoTools.core.result.Result
+    */
     @SaCheckLogin
     @PostMapping("/mkdir")
-    @Operation(summary = "创建文件目录，逻辑暂时有问题，暂时不可使用")
+    @Operation(summary = "创建文件目录")
     public Result postMkdir(@RequestBody Mkdir mkdir){
-        return userStents.mkdir(mkdir,"zfile/user/mkdir");
+        return userStents.mkdir(mkdir,request.getRequestURI());
     }
 
 }
