@@ -82,40 +82,6 @@ public class UserController {
         return userStents.login(user,request.getRequestURI());
     }
 
-    /**
-     * [创建文件目录](Create file directory)
-     * @description: zh - 创建文件目录
-     * @description: en - Create file directory
-     * @version: V1.3
-     * @author XiaoXunYao
-     * @since 2021/6/27 10:15 上午
-     * @param mkdir: 创建文件地址
-     * @return com.xiaoTools.core.result.Result
-    */
-    @SaCheckLogin
-    @PostMapping("/mkdir")
-    @Operation(summary = "创建文件目录")
-    public Result postMkdir(@RequestBody Mkdir mkdir){
-        return userStents.mkdir(mkdir,request.getRequestURI());
-    }
-
-
-    /**
-     * [创建文件](create a file)
-     * @description: zh - 创建文件
-     * @description: en - create a file
-     * @version: V1.0
-     * @author XiaoXunYao
-     * @since 2021/6/27 12:20 下午
-     * @param touch: 创建文件
-     * @return com.xiaoTools.core.result.Result
-    */
-    @SaCheckLogin
-    @PostMapping("/touch")
-    @Operation(summary = "创建文件")
-    public Result postTouch(@RequestBody Touch touch){
-        return userStents.touch(touch,request.getRequestURI());
-    }
 
     /**
      * [退出登陆](Log out)

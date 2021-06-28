@@ -1,11 +1,14 @@
 package com.inet;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.system.oshi.OshiUtil;
+import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
+import com.xiaoTools.core.regular.validation.Validation;
 import com.xiaoTools.core.strUtil.StrUtil;
 import com.zfile.SpringBootZfileApplication;
 import com.zfile.code.entity.aes.Encryption;
@@ -18,6 +21,7 @@ import oshi.hardware.HWDiskStore;
 import oshi.hardware.NetworkIF;
 
 import javax.annotation.Resource;
+import java.io.File;
 
 
 /**
@@ -31,12 +35,41 @@ import javax.annotation.Resource;
 @SpringBootTest(classes = SpringBootZfileApplication.class)
 class SpringBootZfileApplicationTests {
 
-
     @Resource
     private SendMail sendMail;
 
     @Resource
     private Encryption aes;
+
+    /**
+     * 测试08
+     * 测试模块: 测试删除文件或者目录
+     * 测试结果: ok
+     */
+    @Test
+    void contextLoads_07(){
+        //文件地址
+        String fileAddress = "/Users/huchengye/Downloads/demo/demo.sh";
+        String catalogue = "/Users/huchengye/Downloads/demo";
+        //判断文件是否存在
+        System.out.println(FileUtil.isFile(new File(FileUtil.getAbsolutePath(fileAddress))));
+        //进行删除文件
+        System.out.println(FileUtil.rm(new File(FileUtil.getAbsolutePath(fileAddress))));
+        //分割线
+        System.out.println("--------------------------------------------------------------");
+        //判断文件目录是否存在
+        System.out.println(FileUtil.isFile(new File(FileUtil.getAbsolutePath(catalogue))));
+        //进行目录删除
+        System.out.println(FileUtil.rm(new File(FileUtil.getAbsolutePath(catalogue))));
+        System.out.println("--------------------------------------------------------------");
+        //工程化删除文件
+        File file = new File(FileUtil.getAbsolutePath(fileAddress));
+        String result = !FileUtil.isFile(file) ?
+                "删除的文件不存在" :
+                FileUtil.rm(file) ? "删除成功" : "删除失败";
+        //输出删除结果
+        System.out.println(result);
+    }
 
     /**
      * 测试07
@@ -79,8 +112,10 @@ class SpringBootZfileApplicationTests {
      */
     @Test
     void contextLoads_04(){
+        //「SM4」国密加密两个字符串
         String email1 = "huchengyea@163.com";
         String email2 = "huchengyea@163.com";
+        //判断国密加密是否一致
         System.out.println(SmUtil.sm4().encryptHex(email1));
         System.out.println(SmUtil.sm4().encryptHex(email2));
     }
@@ -92,7 +127,9 @@ class SpringBootZfileApplicationTests {
      */
     @Test
     void contextLoads_03(){
+        //插入缓存
         LocalCache.put("123","123",15);
+        //通过名字替换缓存
         LocalCache.put("123","12356",15);
         System.out.println(LocalCache.get("123"));
     }

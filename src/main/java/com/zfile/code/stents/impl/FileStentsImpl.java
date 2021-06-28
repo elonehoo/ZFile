@@ -1,0 +1,122 @@
+package com.zfile.code.stents.impl;
+
+import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
+import com.xiaoTools.core.result.Result;
+import com.xiaoTools.core.strUtil.StrUtil;
+import com.zfile.code.entity.file.dto.Mkdir;
+import com.zfile.code.entity.file.dto.Remove;
+import com.zfile.code.entity.file.dto.Touch;
+import com.zfile.code.stents.FileStents;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.io.File;
+
+/**
+ * [文件接口的中间层](The middle layer of file interface)
+ * @description: zh - 文件接口的中间层
+ * @description: en - The middle layer of file interface
+ * @version: V1.0
+ * @author XiaoXunYao
+ * @since 2021/6/28 8:58 上午
+*/
+@Service
+public class FileStentsImpl implements FileStents {
+
+    private final Logger log = LoggerFactory.getLogger(FileStentsImpl.class);
+
+    /**
+     * [创建文件目录](Create file directory)
+     * @description: zh - 创建文件目录
+     * @description: en - Create file directory
+     * @version: V1.3
+     * @author XiaoXunYao
+     * @since 2021/6/26 5:11 下午
+     * @param mkdir: 文件目录的地址和名字
+     * @param path: URL 路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result mkdir(Mkdir mkdir, String path) {
+        //判断地址是否不会产生错误
+        //0. 查看mkdir的地址最后是不是「/」结尾
+        String address = "/".equals(StrUtil.sub(mkdir.getAddress(),mkdir.getAddress().length() - 1 ,mkdir.getAddress().length() + 1)) ? mkdir.getAddress() : mkdir.getAddress() + "/";
+        //1. 查看mkdir的目录开头是不是「/」开始
+        String fileName = "/".equals(StrUtil.sub(mkdir.getFileName(),0,1)) ? StrUtil.sub(mkdir.getFileName(),1,mkdir.getFileName().length()) : mkdir.getFileName();
+        //进行目录地址拼接
+        String filePath = address + fileName;
+        return FileUtil.mkdir(new File(filePath)) ?
+                new Result().result200("创建目录成功",path) :
+                new Result().result409("创建目录失败",path);
+    }
+
+    /**
+     * [创建文件](create a file)
+     * @description: zh - 创建文件
+     * @description: en - create a file
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/27 12:16 下午
+     * @param touch: 创建文件的地址和名字
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result touch(Touch touch, String path) {
+        //判断地址是否不会产生错误
+        //0. 查看mkdir的地址最后是不是「/」结尾
+        String address = "/".equals(StrUtil.sub(touch.getAddress(),touch.getAddress().length() - 1 ,touch.getAddress().length() + 1)) ? touch.getAddress() : touch.getAddress() + "/";
+        //1. 查看mkdir的目录开头是不是「/」开始
+        String fileName = "/".equals(StrUtil.sub(touch.getFileName(),0,1)) ? StrUtil.sub(touch.getFileName(),1,touch.getFileName().length()) : touch.getFileName();
+        //进行目录地址拼接
+        String filePath = address + fileName;
+        return FileUtil.touch(new File(filePath)) ?
+                new Result().result200("创建文件的成功",path) :
+                new Result().result409("创建文件失败",path);
+
+    }
+
+    /**
+     * [删除文件或者文件目录，如果删除的文件或者目录为全部则进行清空操作](Delete the file or file directory. If the deleted file or directory is all, clear it)
+     * @description: zh - 删除文件或者文件目录，如果删除的文件或者目录为全部则进行清空操作
+     * @description: en - Delete the file or file directory. If the deleted file or directory is all, clear it
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/28 9:48 上午
+     * @param remove: 删除文件的实体类
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result remove(Remove remove, String path) {
+        //0. 获取该文件夹内的文件和文件目录的总数。
+        File[] files = FileUtil.ls(remove.getRootFile());
+        int count = files.length;
+        //日志输出
+        log.debug("count --> " + count);
+        //1.1 修改文件的格式 --> rootFile = /home/
+        String address = "/".equals(StrUtil.sub(remove.getRootFile(),remove.getRootFile().length() - 1 ,remove.getRootFile().length() + 1)) ? remove.getRootFile() : remove.getRootFile() + "/";
+        //1.2 修改文件的名称格式 --> fileName = string
+        for (int i = 0; i < remove.getFileNames().length; i++) {
+            String fileName = remove.getFileNames()[i];
+            remove.getFileNames()[i] = "/".equals(StrUtil.sub(fileName,0,1)) ? StrUtil.sub(fileName,1,fileName.length()) : fileName;
+        }
+        //2. 判断文件数目是否相同
+        if (remove.getFileNames().length == count) {
+            //2.1 分支，清空文件内的所有文件夹
+            if (!FileUtil.clean(new File(FileUtil.getAbsolutePath(remove.getRootFile())))) {
+                return new Result().result408("删除失败",path);
+            }
+        }else {
+            //2.2 分支，完成项目
+            for (String fileName : remove.getFileNames()) {
+                File file = new File(FileUtil.getAbsolutePath(address + fileName));
+                if (!FileUtil.rm(file)) {
+                    return new Result().result408("删除失败",path);
+                }
+            }
+        }
+        return new Result().result200("删除成功",path);
+    }
+}

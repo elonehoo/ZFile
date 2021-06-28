@@ -6,6 +6,7 @@ import com.xiaoTools.core.result.Result;
 import com.zfile.code.stents.impl.UserStentsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -39,7 +40,7 @@ public class GlobalException {
     */
     @ExceptionHandler(value = NullPointerException.class)
     public Result nullPointerException(HttpServletRequest request, NullPointerException e){
-        log.info(e.toString());
+        log.error(e.toString());
         return new Result().result500("出现空指针异常",request.getRequestURI());
     }
 
@@ -56,7 +57,7 @@ public class GlobalException {
     */
     @ExceptionHandler(value = Exception.class)
     public Result allException(HttpServletRequest request, Exception e){
-        log.info(e.toString());
+        log.error(e.toString());
         return new Result().result500("出现特殊异常，请联系管理员",request.getRequestURI());
     }
 
@@ -73,7 +74,7 @@ public class GlobalException {
     */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Result methodArgumentNotValidException(HttpServletRequest request,MethodArgumentNotValidException e) {
-        log.info(e.toString());
+        log.error(e.toString());
         // 从异常对象中拿到ObjectError对象
         ObjectError objectError = e.getBindingResult().getAllErrors().get(0);
         // 然后提取错误提示信息进行返回
@@ -93,7 +94,7 @@ public class GlobalException {
     */
     @ExceptionHandler(value = MailException.class)
     public Result mailException(MailException e, HttpServletRequest request){
-        log.info(e.toString());
+        log.error(e.toString());
         return new Result().result403("邮箱产生了错误，可以检查您输入的邮箱是否拥有操作的服务",request.getRequestURI());
     }
 
@@ -110,8 +111,24 @@ public class GlobalException {
     */
     @ExceptionHandler(value = NotLoginException.class)
     public Result notLoginException(NotLoginException e,HttpServletRequest request){
-        log.info(e.toString());
+        log.error(e.toString());
         return new Result().result503("未登陆，无法进行操作",request.getRequestURI());
     }
 
+    /**
+     * [产生了 Http消息不可读异常](An unreadable HTTP message exception was generated)
+     * @description: zh - 产生了 Http消息不可读异常
+     * @description: en - An unreadable HTTP message exception was generated
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/28 9:35 上午
+     * @param e: [异常处理](exception handling)
+     * @param request: [请求的URI](The URI of the request)
+     * @return com.xiaoTools.core.result.Result
+    */
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public Result httpMessageNotReadableException(HttpMessageNotReadableException e, HttpServletRequest request){
+        log.error(e.toString());
+        return new Result().result400("Http消息不可读",request.getRequestURI());
+    }
 }
