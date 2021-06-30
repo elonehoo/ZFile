@@ -12,7 +12,11 @@ import com.xiaoTools.core.regular.validation.Validation;
 import com.xiaoTools.core.strUtil.StrUtil;
 import com.zfile.SpringBootZfileApplication;
 import com.zfile.code.entity.aes.Encryption;
+import com.zfile.code.entity.cipher.po.Cipher;
 import com.zfile.code.entity.mail.vo.SendMail;
+import com.zfile.code.entity.user.po.User;
+import com.zfile.code.service.CipherService;
+import com.zfile.code.service.UserService;
 import com.zfile.code.util.LocalCache;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +26,8 @@ import oshi.hardware.NetworkIF;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -36,10 +42,21 @@ import java.io.File;
 class SpringBootZfileApplicationTests {
 
     @Resource
+    private UserService userService;
+
+    @Resource
+    private CipherService cipherService;
+
+    @Resource
     private SendMail sendMail;
 
     @Resource
     private Encryption aes;
+
+    @Test
+    void contextLoads_08(){
+
+    }
 
     /**
      * 测试08

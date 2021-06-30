@@ -3,6 +3,7 @@ package com.zfile.code.stents.impl;
 import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.result.Result;
 import com.xiaoTools.core.strUtil.StrUtil;
+import com.zfile.code.entity.file.dto.Folder;
 import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Remove;
 import com.zfile.code.entity.file.dto.Touch;
@@ -10,6 +11,7 @@ import com.zfile.code.stents.FileStents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
@@ -118,5 +120,22 @@ public class FileStentsImpl implements FileStents {
             }
         }
         return new Result().result200("删除成功",path);
+    }
+
+    /**
+     * [上传文件](Upload file)
+     * @description: zh - 上传文件
+     * @description: en - Upload file
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/6/30 6:49 下午
+     * @param files: 上传的文件集合
+     * @param folder: 需要上传的文件路径
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result upload(MultipartFile[] files, Folder folder, String path) {
+        return null;
     }
 }
