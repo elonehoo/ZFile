@@ -39,5 +39,9 @@ public class UploadProgressApplication {
         return customMultipartResolver;
     }
 
+    public static void main(String[] args) {
+        SpringApplication.run(UploadProgressApplication.class, args);
+    }
+
 
 }

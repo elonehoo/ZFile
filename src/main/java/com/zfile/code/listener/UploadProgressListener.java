@@ -1,6 +1,9 @@
 package com.zfile.code.listener;
 
 import com.zfile.code.entity.progress.vo.ProgressEntity;
+import com.zfile.code.stents.impl.FileStentsImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.apache.commons.fileupload.ProgressListener;
 import javax.servlet.http.HttpSession;
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpSession;
 */
 @Component
 public class UploadProgressListener implements ProgressListener {
+
+    private final Logger log = LoggerFactory.getLogger(UploadProgressListener.class);
 
     /**
      * session 监听
@@ -45,5 +50,11 @@ public class UploadProgressListener implements ProgressListener {
         status.setPBytesRead(pBytesRead);
         status.setPContentLength(pContentLength);
         status.setPItems(pItems);
+        session.setAttribute("status", status);
+        if (status.getPContentLength() == 100f){
+            log.debug("分割线-----------------------");
+        }else {
+            log.debug("上传的进度-->{}",status.getPContentLength() + "%");
+        }
     }
 }

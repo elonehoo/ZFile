@@ -1,8 +1,11 @@
 package com.zfile.code.resolver;
 
+import com.zfile.code.entity.progress.vo.ProgressEntity;
 import com.zfile.code.listener.UploadProgressListener;
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -20,6 +23,7 @@ import java.util.List;
  * @since 2021/6/29 9:56 上午
 */
 public class CustomMultipartResolver extends CommonsMultipartResolver {
+
 
     @Resource
     private UploadProgressListener uploadProgressListener;

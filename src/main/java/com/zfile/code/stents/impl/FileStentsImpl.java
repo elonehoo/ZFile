@@ -8,12 +8,14 @@ import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Remove;
 import com.zfile.code.entity.file.dto.Touch;
 import com.zfile.code.stents.FileStents;
+import com.zfile.code.util.FileTemporaryUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * [文件接口的中间层](The middle layer of file interface)
@@ -135,7 +137,12 @@ public class FileStentsImpl implements FileStents {
      * @return com.xiaoTools.core.result.Result
      */
     @Override
-    public Result upload(MultipartFile[] files, Folder folder, String path) {
-        return null;
+    public Result upload(List<MultipartFile> files, Folder folder, String path) {
+        for (MultipartFile file : files) {
+            log.debug(file.getOriginalFilename());
+        }
+        return FileTemporaryUtil.saveMultiFile(folder.getRootPath(),files) ?
+                new Result().result200("文件上传完成",path) :
+                new Result().result414("文件上传失败",path);
     }
 }

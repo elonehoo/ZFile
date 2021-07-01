@@ -7,25 +7,20 @@ import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Remove;
 import com.zfile.code.entity.file.dto.Touch;
 import com.zfile.code.entity.progress.vo.ProgressEntity;
-import com.zfile.code.resolver.CustomMultipartResolver;
 import com.zfile.code.stents.FileStents;
-import com.zfile.code.stents.impl.BaseStentsImpl;
-import com.zfile.code.util.FileUtil;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -128,13 +123,7 @@ public class FileController {
     */
     @PostMapping("/upload")
     @Operation(summary = "上传文件")
-    public Result upload(@RequestPart MultipartFile[] files, Folder folder){
-        log.info("上传文件-->{}","开始");
-        log.debug("上传的root路径-->{}",folder.getRootPath());
-        for (MultipartFile file : files) {
-            log.debug("上传的文件名字-->{}",file.getOriginalFilename());
-        }
-        log.info("上传文件夹-->{}","结束");
+    public Result upload(@RequestPart List<MultipartFile> files, Folder folder){
         return fileStents.upload(files,folder,request.getRequestURI());
     }
 
@@ -153,9 +142,16 @@ public class FileController {
         //获取状态
         ProgressEntity status = (ProgressEntity) session.getAttribute("status");
         Map<String, Object> result = new HashMap<>(2);
-        result.put("schedule",status.getPContentLength());
-        result.put("items",status.getPItems());
+        if (status == null){
+            result.put("schedule", 0);
+            result.put("items", 0);
+        }else {
+            result.put("schedule", status.getPContentLength());
+            result.put("items", status.getPItems());
+        }
+
         return new Result().result200(result,request.getRequestURI());
+
     }
 
 }

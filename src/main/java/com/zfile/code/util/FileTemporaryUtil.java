@@ -2,10 +2,8 @@ package com.zfile.code.util;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.List;
 
 /**
  * [文件工具类](File Util)
@@ -15,7 +13,7 @@ import java.io.OutputStream;
  * @author XiaoXunYao
  * @since 2021/6/30 1:24 下午
 */
-public class FileUtil {
+public class FileTemporaryUtil {
 
     /**
      * [将临时文件转换成为File](MultipartFile To File)
@@ -66,5 +64,55 @@ public class FileUtil {
         }
     }
 
+    /**
+     * [保存文件](save file)
+     * @description: zh - 保存文件
+     * @description: en - save file
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/1 9:58 上午
+     * @param basePath: 基础路径
+     * @param files: 文件数组
+    */
+    public static boolean saveMultiFile(String basePath, List<MultipartFile> files) {
+        if (files == null || files.size() == 0) {
+            return false;
+        }
+
+        if (basePath.endsWith("/")) {
+            basePath = basePath.substring(0, basePath.length() - 1);
+        }
+        for (MultipartFile file : files) {
+            String replaceAll = file.getOriginalFilename().replaceAll("!", "/");
+            String filePath = basePath + "/" + replaceAll;
+            makeDir(filePath);
+            File dest = new File(filePath);
+            try {
+                file.transferTo(dest);
+            } catch (IllegalStateException | IOException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * [确保目录存在，不存在则创建](Make sure that the directory exists and create it if it does not)
+     * @description: zh - 确保目录存在，不存在则创建
+     * @description: en - Make sure that the directory exists and create it if it does not
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/1 10:02 上午
+     * @param filePath: 文件路径
+    */
+    private static void makeDir(String filePath) {
+        if (filePath.lastIndexOf('/') > 0) {
+            String dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
+            File dir = new File(dirPath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+        }
+    }
 
 }

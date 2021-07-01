@@ -7,6 +7,8 @@ import com.zfile.code.entity.file.dto.Remove;
 import com.zfile.code.entity.file.dto.Touch;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * [文件中间层](File middle layer)
  * @description: zh - 文件中间层
@@ -68,5 +70,5 @@ public interface FileStents {
      * @param path: URL路径
      * @return com.xiaoTools.core.result.Result
     */
-    Result upload(MultipartFile[] files, Folder folder, String path);
+    Result upload(List<MultipartFile> files, Folder folder, String path);
 }

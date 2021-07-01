@@ -53,8 +53,19 @@ class SpringBootZfileApplicationTests {
     @Resource
     private Encryption aes;
 
+    /**
+     * 测试09
+     * 测试模块: 文件上传部分细节
+     * 测试结果: unknown
+     */
     @Test
     void contextLoads_08(){
+//        String basePath = "/home/hcy";
+        String basePath = "D:/upload/a.txt";
+        String dirPath = basePath.substring(0, basePath.lastIndexOf('/'));
+        System.out.println(dirPath);
+        File dir = new File(dirPath);
+        System.out.println(dir.exists());
 
     }
 

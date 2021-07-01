@@ -43,10 +43,10 @@ public class ProgressEntity {
         pBytesRead = bytesRead;
     }
 
-    public String getPContentLength() {
+    public float getPContentLength() {
         float tmp = (float) pBytesRead;
         float result = tmp / pContentLength * 100;
-        return result + "%";
+        return result;
     }
 
     public void setPContentLength(long contentLength) {
