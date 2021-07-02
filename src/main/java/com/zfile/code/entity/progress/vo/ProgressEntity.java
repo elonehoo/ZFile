@@ -31,8 +31,9 @@ public class ProgressEntity {
     private long startTime = System.currentTimeMillis();
 
     public ProgressEntity() {
-        pBytesRead = 0L;
-        pContentLength = 0L;
+        this.pBytesRead = 0L;
+        this.pContentLength = 0L;
+        this.pItems = 0;
     }
 
     public long getPBytesRead() {

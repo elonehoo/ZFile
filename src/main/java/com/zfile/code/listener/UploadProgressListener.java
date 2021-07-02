@@ -1,7 +1,6 @@
 package com.zfile.code.listener;
 
-import com.zfile.code.entity.progress.vo.ProgressEntity;
-import com.zfile.code.stents.impl.FileStentsImpl;
+import cn.hutool.core.date.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -28,10 +27,9 @@ public class UploadProgressListener implements ProgressListener {
 
     public void setSession(HttpSession session){
         this.session = session;
-        ProgressEntity status = new ProgressEntity();
-        session.setAttribute("status", status);
+        log.warn(" upload_percent ---------------- 0 ---------------- {}", DateUtil.now());
+        session.setAttribute("upload_percent", 0.00);
     }
-
 
     /**
      * [监听上传逻辑](Monitor upload logic)
@@ -46,15 +44,8 @@ public class UploadProgressListener implements ProgressListener {
     */
     @Override
     public void update(long pBytesRead, long pContentLength, int pItems) {
-        ProgressEntity status = (ProgressEntity) session.getAttribute("status");
-        status.setPBytesRead(pBytesRead);
-        status.setPContentLength(pContentLength);
-        status.setPItems(pItems);
-        session.setAttribute("status", status);
-        if (status.getPContentLength() == 100f){
-            log.debug("分割线-----------------------");
-        }else {
-            log.debug("上传的进度-->{}",status.getPContentLength() + "%");
-        }
+        double percent = pBytesRead * 100.0 / pContentLength;
+        log.debug("上传文件的进度 --> {}",percent);
+        session.setAttribute("upload_percent", percent);
     }
 }

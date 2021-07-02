@@ -2,6 +2,7 @@ package com.inet;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.AES;
@@ -54,9 +55,21 @@ class SpringBootZfileApplicationTests {
     private Encryption aes;
 
     /**
+     * 测试10
+     * 测试模块：获取文件的名字
+     * 测试结果：ok
+     */
+    @Test
+    void contextLoads_09(){
+        String filePath = "/Users/huchengye/Downloads/项目设计文档_模板.md";
+        File file = new File(filePath);
+        System.out.println( "文件的名字--> " + FileNameUtil.getName(file));
+    }
+
+    /**
      * 测试09
      * 测试模块: 文件上传部分细节
-     * 测试结果: unknown
+     * 测试结果: ok
      */
     @Test
     void contextLoads_08(){

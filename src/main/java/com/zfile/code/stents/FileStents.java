@@ -3,7 +3,6 @@ package com.zfile.code.stents;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.file.dto.Folder;
 import com.zfile.code.entity.file.dto.Mkdir;
-import com.zfile.code.entity.file.dto.Remove;
 import com.zfile.code.entity.file.dto.Touch;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,11 +51,11 @@ public interface FileStents {
      * @version: V1.0
      * @author XiaoXunYao
      * @since 2021/6/28 9:48 上午
-     * @param remove: 删除文件的实体类
+     * @param removePath: 删除文件的实体类
      * @param path: URL路径
      * @return com.xiaoTools.core.result.Result
     */
-    Result remove(Remove remove, String path);
+    Result remove(String removePath,String[] removeName, String path);
 
     /**
      * [上传文件](Upload file)

@@ -5,7 +5,6 @@ import com.xiaoTools.core.result.Result;
 import com.xiaoTools.core.strUtil.StrUtil;
 import com.zfile.code.entity.file.dto.Folder;
 import com.zfile.code.entity.file.dto.Mkdir;
-import com.zfile.code.entity.file.dto.Remove;
 import com.zfile.code.entity.file.dto.Touch;
 import com.zfile.code.stents.FileStents;
 import com.zfile.code.util.FileTemporaryUtil;
@@ -88,33 +87,33 @@ public class FileStentsImpl implements FileStents {
      * @version: V1.0
      * @author XiaoXunYao
      * @since 2021/6/28 9:48 上午
-     * @param remove: 删除文件的实体类
+     * @param removePath: 删除文件的地址
      * @param path: URL路径
      * @return com.xiaoTools.core.result.Result
      */
     @Override
-    public Result remove(Remove remove, String path) {
+    public Result remove(String removePath,String[] removeNames, String path) {
         //0. 获取该文件夹内的文件和文件目录的总数。
-        File[] files = FileUtil.ls(remove.getRootFile());
+        File[] files = FileUtil.ls(removePath);
         int count = files.length;
         //日志输出
         log.debug("count --> " + count);
         //1.1 修改文件的格式 --> rootFile = /home/
-        String address = "/".equals(StrUtil.sub(remove.getRootFile(),remove.getRootFile().length() - 1 ,remove.getRootFile().length() + 1)) ? remove.getRootFile() : remove.getRootFile() + "/";
+        String address = "/".equals(StrUtil.sub(removePath,removePath.length() - 1 ,removePath.length() + 1)) ? removePath : removePath + "/";
         //1.2 修改文件的名称格式 --> fileName = string
-        for (int i = 0; i < remove.getFileNames().length; i++) {
-            String fileName = remove.getFileNames()[i];
-            remove.getFileNames()[i] = "/".equals(StrUtil.sub(fileName,0,1)) ? StrUtil.sub(fileName,1,fileName.length()) : fileName;
+        for (int i = 0; i < removeNames.length; i++) {
+            String fileName = removeNames[i];
+            removeNames[i] = "/".equals(StrUtil.sub(fileName,0,1)) ? StrUtil.sub(fileName,1,fileName.length()) : fileName;
         }
         //2. 判断文件数目是否相同
-        if (remove.getFileNames().length == count) {
+        if (removeNames.length == count) {
             //2.1 分支，清空文件内的所有文件夹
-            if (!FileUtil.clean(new File(FileUtil.getAbsolutePath(remove.getRootFile())))) {
+            if (!FileUtil.clean(new File(FileUtil.getAbsolutePath(removePath)))) {
                 return new Result().result408("删除失败",path);
             }
         }else {
             //2.2 分支，完成项目
-            for (String fileName : remove.getFileNames()) {
+            for (String fileName : removeNames) {
                 File file = new File(FileUtil.getAbsolutePath(address + fileName));
                 if (!FileUtil.rm(file)) {
                     return new Result().result408("删除失败",path);
