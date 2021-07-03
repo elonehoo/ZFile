@@ -101,6 +101,15 @@ public class UserController {
         return userStents.signOut(request.getRequestURI());
     }
 
+    /**
+     * [查看日志](view log)
+     * @description: zh - 查看日志
+     * @description: en - view log
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/3 5:34 下午
+     * @return com.xiaoTools.core.result.Result
+    */
     @SaCheckLogin
     @GetMapping("/log")
     @Operation(summary = "查看日志")
