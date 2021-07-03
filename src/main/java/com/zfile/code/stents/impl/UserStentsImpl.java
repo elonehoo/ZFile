@@ -13,11 +13,14 @@ import com.zfile.code.entity.aes.Encryption;
 import com.zfile.code.entity.cipher.po.Cipher;
 import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Touch;
+import com.zfile.code.entity.log.po.Log;
+import com.zfile.code.entity.log.vo.ViewLog;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
 import com.zfile.code.entity.user.po.User;
 import com.zfile.code.service.CipherService;
+import com.zfile.code.service.LogService;
 import com.zfile.code.service.UserService;
 import com.zfile.code.stents.UserStents;
 import com.zfile.code.util.LocalCache;
@@ -29,6 +32,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,6 +53,9 @@ public class UserStentsImpl implements UserStents {
 
     @Resource
     private CipherService cipherService;
+
+    @Resource
+    private LogService logService;
 
     @Resource
     private SendMail sendMail;
@@ -154,11 +161,12 @@ public class UserStentsImpl implements UserStents {
                 SecureUtil.md5(user.getCipher()));
         //判断是否登陆成功
         if (loginUser == null){
+            logService.log("用户登陆失败");
             return new Result().result503("账号或者密码错误，无法登陆",path);
         }
         //调用 sa-token 的登陆操作
         StpUtil.login(loginUser.getId());
-        log.info("登陆成功");
+        logService.log("用户登陆");
         return new Result().result200("登陆成功",path);
     }
 
@@ -174,9 +182,24 @@ public class UserStentsImpl implements UserStents {
      */
     @Override
     public Result signOut(String path) {
-        log.info(StpUtil.getTokenValue());
         StpUtil.logoutByTokenValue(StpUtil.getTokenValue());
-        log.info("退出成功");
+        logService.log("用户退出");
         return new Result().result200("退出成功",path);
+    }
+
+
+    /**
+     * [查看日志](view log)
+     * @description: zh - 查看日志
+     * @description: en - view log
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/3 4:07 下午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result log(String path) {
+        return new Result().result200(logService.view(),path);
     }
 }

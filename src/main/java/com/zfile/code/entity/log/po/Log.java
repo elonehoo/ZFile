@@ -1,23 +1,22 @@
-package com.zfile.code.entity.cipher.po;
+package com.zfile.code.entity.log.po;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
-import lombok.experimental.Accessors;
-
 /**
- * <p>
- * 密码表
- * </p>
- *
- * @author HCY
- * @since 2021-04-28
- */
+ * [日志](journal)
+ * @description: zh - 日志
+ * @description: en - journal
+ * @version: V1.0
+ * @author XiaoXunYao
+ * @since 2021/7/3 8:50 上午
+*/
 @Getter
 @Setter
 @ToString
@@ -25,29 +24,24 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("tbl_cipher")
-public class Cipher implements Serializable {
+@TableName("tbl_log")
+public class Log implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 日志表主键ID
      */
     @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private String id;
 
     /**
-     * 用户序号
+     * 日志说明
      */
-    @TableField("user_id")
-    private String userId;
+    @TableField("log_explain")
+    private String logExplain;
 
-    /**
-     * 密码
-     */
-    @TableField("cipher")
-    private String cipher;
 
     /**
      * 创建时间
@@ -63,9 +57,7 @@ public class Cipher implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date gmtModified;
 
-
-    public Cipher(String userId, String cipher) {
-        this.userId = userId;
-        this.cipher = cipher;
+    public Log(String logExplain) {
+        this.logExplain = logExplain;
     }
 }

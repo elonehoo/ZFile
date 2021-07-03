@@ -43,7 +43,7 @@ public class BaseController {
     */
     @Operation(summary = "判断是否已经完善了初始化")
     @GetMapping(value = "/initialization",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Result getInitialization(){
+    public Result initialization(){
         return baseStents.getInitialization(request.getRequestURI());
     }
 
@@ -59,7 +59,7 @@ public class BaseController {
             @ApiImplicitParam(name = "path",value = "查看的路径",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = "/"),
     })
     @GetMapping(value = "/see",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Result getSee(@RequestParam(value = "path",defaultValue = "/") String path){
+    public Result see(@RequestParam(value = "path",defaultValue = "/") String path){
         return baseStents.getSeeContent(path,request.getRequestURI());
     }
 
@@ -74,7 +74,7 @@ public class BaseController {
     */
     @Operation(summary = "获取系统的性能信息")
     @GetMapping(value = "/system",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Result getSystem(){
+    public Result system(){
         return baseStents.getSystemInfo(request.getRequestURI());
     }
 

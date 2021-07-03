@@ -4,6 +4,7 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.text.StrSpliter;
+import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.extra.mail.MailUtil;
@@ -14,10 +15,13 @@ import com.xiaoTools.core.strUtil.StrUtil;
 import com.zfile.SpringBootZfileApplication;
 import com.zfile.code.entity.aes.Encryption;
 import com.zfile.code.entity.cipher.po.Cipher;
+import com.zfile.code.entity.log.vo.ViewLog;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.user.po.User;
 import com.zfile.code.service.CipherService;
+import com.zfile.code.service.LogService;
 import com.zfile.code.service.UserService;
+import com.zfile.code.util.FileTemporaryUtil;
 import com.zfile.code.util.LocalCache;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,8 +31,7 @@ import oshi.hardware.NetworkIF;
 
 import javax.annotation.Resource;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -49,10 +52,24 @@ class SpringBootZfileApplicationTests {
     private CipherService cipherService;
 
     @Resource
+    private LogService logService;
+
+    @Resource
     private SendMail sendMail;
 
     @Resource
     private Encryption aes;
+
+    /**
+     * 测试11
+     * 测试模块：数组的问题
+     * 测试结果：ok
+     */
+    @Test
+    void contextLoads_10(){
+        List<ViewLog> view = logService.view();
+        view.forEach(System.out :: println);
+    }
 
     /**
      * 测试10

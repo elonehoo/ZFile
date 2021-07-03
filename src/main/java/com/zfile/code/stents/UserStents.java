@@ -67,4 +67,16 @@ public interface UserStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result signOut(String path);
+
+    /**
+     * [查看日志](view log)
+     * @description: zh - 查看日志
+     * @description: en - view log
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/3 4:07 下午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result log(String path);
 }

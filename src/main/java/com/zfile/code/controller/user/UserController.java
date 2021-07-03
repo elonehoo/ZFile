@@ -2,12 +2,12 @@ package com.zfile.code.controller.user;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.xiaoTools.core.result.Result;
-import com.zfile.code.entity.file.dto.Mkdir;
-import com.zfile.code.entity.file.dto.Touch;
 import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
 import com.zfile.code.stents.UserStents;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +46,7 @@ public class UserController {
     */
     @Operation(summary = "如果用户尚未进行初始化操作，则进行初始化操作的第一步，注册用户基本的信息")
     @PostMapping("/register")
-    public Result postRegister(@Valid @RequestBody RegisterUser user){
+    public Result register(@Valid @RequestBody RegisterUser user){
         return userStents.register(user,request.getRequestURI());
     }
 
@@ -61,8 +61,11 @@ public class UserController {
      * @return com.xiaoTools.core.result.Result
     */
     @Operation(summary = "通过输入的邮箱发送验证码，验证码保留十五分钟。")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "email",value = "用户注册的邮箱",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),
+    })
     @GetMapping("/verification")
-    public Result getVerification(@RequestParam(value = "email",defaultValue = "") String email){
+    public Result verification(@RequestParam(value = "email",defaultValue = "") String email){
         return userStents.verification(email,request.getRequestURI());
     }
 
@@ -78,10 +81,9 @@ public class UserController {
     */
     @PostMapping("/login")
     @Operation(summary = "用户输入账号和密码进行登陆操作")
-    public Result postLogin(@RequestBody LoginUser user){
+    public Result login(@RequestBody LoginUser user){
         return userStents.login(user,request.getRequestURI());
     }
-
 
     /**
      * [退出登陆](Log out)
@@ -95,7 +97,14 @@ public class UserController {
     @SaCheckLogin
     @GetMapping("/signOut")
     @Operation(summary = "退出登陆")
-    public Result getSignOut(){
+    public Result signOut(){
         return userStents.signOut(request.getRequestURI());
+    }
+
+    @SaCheckLogin
+    @GetMapping("/log")
+    @Operation(summary = "查看日志")
+    public Result log(){
+        return userStents.log(request.getRequestURI());
     }
 }

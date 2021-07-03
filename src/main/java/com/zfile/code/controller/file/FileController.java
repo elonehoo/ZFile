@@ -68,7 +68,7 @@ public class FileController {
     @SaCheckLogin
     @PostMapping("/mkdir")
     @Operation(summary = "创建文件目录")
-    public Result postMkdir(@RequestBody Mkdir mkdir){
+    public Result mkdir(@RequestBody Mkdir mkdir){
         return fileStents.mkdir(mkdir,request.getRequestURI());
     }
 
@@ -85,7 +85,7 @@ public class FileController {
     @SaCheckLogin
     @PostMapping("/touch")
     @Operation(summary = "创建文件")
-    public Result postTouch(@RequestBody Touch touch){
+    public Result touch(@RequestBody Touch touch){
         return fileStents.touch(touch,request.getRequestURI());
     }
 
@@ -163,6 +163,16 @@ public class FileController {
         return new Result().result200("重制上传进度",request.getRequestURI());
     }
 
+    /**
+     * [下载文件](Download files)
+     * @description: zh - 下载文件
+     * @description: en - Download files
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/3 8:58 上午
+     * @param downPath: 下载文件的路径
+     * @param response: 返回模块
+    */
     @GetMapping("/download")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "downPath",value = "下载文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),

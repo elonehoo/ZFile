@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zfile.code.mapper.LogMapper">
+
+<!--    展示日志-->
+    <select id="view" resultType="com.zfile.code.entity.log.vo.ViewLog">
+        SELECT
+            log.log_explain AS logValue,
+            log.gmt_create AS logDate
+        FROM
+            tbl_log AS log
+        ORDER BY
+            log.gmt_create DESC
+        LIMIT 5;
+    </select>
+</mapper>
