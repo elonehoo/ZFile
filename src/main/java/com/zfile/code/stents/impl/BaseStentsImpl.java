@@ -1,5 +1,6 @@
 package com.zfile.code.stents.impl;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.result.Result;
@@ -7,6 +8,7 @@ import com.zfile.code.entity.file.vo.FileVO;
 import com.zfile.code.entity.systemInfo.systemInfo.vo.SystemInfo;
 import com.zfile.code.service.UserService;
 import com.zfile.code.stents.BaseStents;
+import com.zfile.code.util.FileTemporaryUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -66,10 +68,10 @@ public class BaseStentsImpl implements BaseStents {
                 //判断文件是否是目录
                 if (!file.isDirectory()) {
                     //如果不是目录，则获取该文件的文件类型
-                    lists.add(new FileVO(file.getName(),FileTypeUtil.getType(file)));
+                    lists.add(new FileVO(file.getName(),FileTypeUtil.getType(file), FileTemporaryUtil.size(cn.hutool.core.io.FileUtil.size(file)),cn.hutool.core.io.FileUtil.lastModifiedTime(file)));
                 }else {
                     //是目录，则进行集合添加
-                    lists.add(new FileVO(file.getName(), "Directory"));
+                    lists.add(new FileVO(file.getName(), "Directory", FileTemporaryUtil.size(cn.hutool.core.io.FileUtil.size(file)),cn.hutool.core.io.FileUtil.lastModifiedTime(file)));
                 }
             }
         }catch (Exception e){ /*无任何需要制作的操作*/ }

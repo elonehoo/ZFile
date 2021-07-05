@@ -6,6 +6,7 @@ import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Touch;
 import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
+import com.zfile.code.entity.user.dto.UpdateUser;
 
 /**
  * [外观模式的用户接口分层](User interface layering of appearance mode)
@@ -79,4 +80,29 @@ public interface UserStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result log(String path);
+
+    /**
+     * [查看用户的信息](View user information)
+     * @description: zh - 查看用户的信息
+     * @description: en - View user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 3:16 下午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result show(String path);
+
+    /**
+     * [修改用户的信息](Modify user information)
+     * @description: zh - 修改用户的信息
+     * @description: en - Modify user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 3:34 下午
+     * @param updateUser: 可以修改的用户信息
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result update(UpdateUser updateUser, String path);
 }

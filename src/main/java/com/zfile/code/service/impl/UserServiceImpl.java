@@ -1,6 +1,7 @@
 package com.zfile.code.service.impl;
 
 import com.zfile.code.entity.user.po.User;
+import com.zfile.code.entity.user.vo.ShowUser;
 import com.zfile.code.mapper.UserMapper;
 import com.zfile.code.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -69,5 +70,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User login(String account, String cipher) {
         return userMapper.selectByLogin(account,cipher);
+    }
+
+    /**
+     * [展示用户的信息](Display user information)
+     * @description: zh - 展示用户的信息
+     * @description: en - Display user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 2:46 下午
+     * @return com.zfile.code.entity.user.vo.ShowUser
+     */
+    @Override
+    public ShowUser show() {
+        return userMapper.show();
     }
 }

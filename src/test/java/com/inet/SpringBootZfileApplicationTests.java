@@ -1,6 +1,7 @@
 package com.inet;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.text.StrSpliter;
@@ -9,8 +10,11 @@ import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.system.oshi.OshiUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.regular.validation.Validation;
+import com.xiaoTools.core.result.Result;
 import com.xiaoTools.core.strUtil.StrUtil;
 import com.zfile.SpringBootZfileApplication;
 import com.zfile.code.entity.aes.Encryption;
@@ -18,6 +22,7 @@ import com.zfile.code.entity.cipher.po.Cipher;
 import com.zfile.code.entity.log.vo.ViewLog;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.user.po.User;
+import com.zfile.code.mapper.UserMapper;
 import com.zfile.code.service.CipherService;
 import com.zfile.code.service.LogService;
 import com.zfile.code.service.UserService;
@@ -31,6 +36,9 @@ import oshi.hardware.NetworkIF;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 
 
@@ -52,6 +60,9 @@ class SpringBootZfileApplicationTests {
     private CipherService cipherService;
 
     @Resource
+    private UserMapper userMapper;
+
+    @Resource
     private LogService logService;
 
     @Resource
@@ -59,6 +70,22 @@ class SpringBootZfileApplicationTests {
 
     @Resource
     private Encryption aes;
+
+    /**
+     * 测试12
+     * 测试模块：文件的时间和大小问题
+     * 测试结果：unknown
+     */
+    @Test
+    void contextLoads_11(){
+        String filePath = "/Users/huchengye/Downloads/日志/操作手册";
+        File file = new File(filePath);
+        long size = cn.hutool.core.io.FileUtil.size(file);
+        System.out.println(size);
+        String s = FileTemporaryUtil.size(size);
+        System.out.println(s);
+
+    }
 
     /**
      * 测试11

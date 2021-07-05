@@ -115,4 +115,31 @@ public class FileTemporaryUtil {
         }
     }
 
+    /**
+     *
+     * @description:
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 4:44 下午
+     * @param fileSize: 将bytes转换成为KB或者MB或者GB
+     * @return java.lang.String
+    */
+    public static String size(long fileSize){
+
+        if (fileSize < 1024){
+            return fileSize + " b";
+        }else if ( (fileSize / 1024) < 1024){
+            //计算KB
+            return fileSize / 1024 + " KB";
+        }else if ((fileSize / 1024 / 1024) < 1024){
+            //计算MB
+            return fileSize / 1024 / 1024 + " MB";
+        }else if ((fileSize / 1024 / 1024 / 1024) < 1024){
+            //计算GB
+            return fileSize / 1024 / 1024 / 1024 + " GB";
+        }else{
+            //计算TB
+            return fileSize / 1024 / 1024 / 1024 / 1024 + " TB";
+        }
+    }
 }

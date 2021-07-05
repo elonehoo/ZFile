@@ -9,9 +9,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zfile.code.service.UserService;
 import com.zfile.code.service.impl.UserServiceImpl;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -22,7 +20,11 @@ import lombok.experimental.Accessors;
  * @author HCY
  * @since 2021-04-28
  */
-@Data
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("tbl_user")
@@ -71,6 +73,12 @@ public class User implements Serializable {
 
     public User(String email, String nickName) {
         this.email = email;
+        this.nickName = nickName;
+    }
+
+    public User(String id, String photo, String nickName) {
+        this.id = id;
+        this.photo = photo;
         this.nickName = nickName;
     }
 }

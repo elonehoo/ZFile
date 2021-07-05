@@ -1,8 +1,10 @@
 package com.zfile.code.stents.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.SmUtil;
+import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.extra.mail.MailUtil;
 import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.randomUtil.RandomUtil;
@@ -18,7 +20,9 @@ import com.zfile.code.entity.log.vo.ViewLog;
 import com.zfile.code.entity.mail.vo.SendMail;
 import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
+import com.zfile.code.entity.user.dto.UpdateUser;
 import com.zfile.code.entity.user.po.User;
+import com.zfile.code.entity.user.vo.ShowUser;
 import com.zfile.code.service.CipherService;
 import com.zfile.code.service.LogService;
 import com.zfile.code.service.UserService;
@@ -62,6 +66,7 @@ public class UserStentsImpl implements UserStents {
 
     @Resource
     private Encryption encryption;
+
 
     /**
      * [如果用户没有进行初始化操作，则进行初始化操作](If the user does not perform the initialization operation, perform the initialization operation)
@@ -201,5 +206,42 @@ public class UserStentsImpl implements UserStents {
     @Override
     public Result log(String path) {
         return new Result().result200(logService.view(),path);
+    }
+
+    /**
+     * [查看用户的信息](View user information)
+     * @description: zh - 查看用户的信息
+     * @description: en - View user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 3:16 下午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result show(String path) {
+        ShowUser showUser = userService.show();
+        AES aes = encryption.createAes();
+        showUser.setEmail(aes.decryptStr(showUser.getEmail()));
+        return new Result().result200(showUser,path);
+    }
+
+    /**
+     * [修改用户的信息](Modify user information)
+     * @description: zh - 修改用户的信息
+     * @description: en - Modify user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 3:34 下午
+     * @param updateUser: 可以修改的用户信息
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result update(UpdateUser updateUser, String path) {
+        String loginId = StpUtil.getLoginId().toString();
+        return userService.updateById(new User(loginId,updateUser.getPhoto(),updateUser.getNickName())) ?
+                new Result().result200("修改成功",path) :
+                new Result().result403("修改失败",path);
     }
 }

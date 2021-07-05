@@ -4,6 +4,7 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
+import com.zfile.code.entity.user.dto.UpdateUser;
 import com.zfile.code.stents.UserStents;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -83,6 +84,39 @@ public class UserController {
     @Operation(summary = "用户输入账号和密码进行登陆操作")
     public Result login(@RequestBody LoginUser user){
         return userStents.login(user,request.getRequestURI());
+    }
+
+    /**
+     * [展示用户的信息](Display user information)
+     * @description: zh - 展示用户的信息
+     * @description: en - Display user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 3:14 下午
+     * @return com.xiaoTools.core.result.Result
+    */
+    @SaCheckLogin
+    @GetMapping("/show")
+    @Operation(summary = "展示用户的信息")
+    public Result show(){
+        return userStents.show(request.getRequestURI());
+    }
+
+    /**
+     * [修改用户的信息](Modify user information)
+     * @description: zh - 修改用户的信息
+     * @description: en - Modify user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 3:57 下午
+     * @param updateUser: 修改的用户的信息
+     * @return com.xiaoTools.core.result.Result
+    */
+    @SaCheckLogin
+    @PutMapping("/user")
+    @Operation(summary = "修改用户的信息")
+    public Result update(@RequestBody UpdateUser updateUser){
+        return userStents.update(updateUser,request.getRequestURI());
     }
 
     /**

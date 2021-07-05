@@ -2,6 +2,7 @@ package com.zfile.code.mapper;
 
 import com.zfile.code.entity.user.po.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zfile.code.entity.user.vo.ShowUser;
 
 /**
  * <p>
@@ -37,4 +38,15 @@ public interface UserMapper extends BaseMapper<User> {
      * @return com.zfile.code.entity.user.po.User
      */
     User selectByLogin(String account, String cipher);
+
+    /**
+     * [展示用户的信息](Display user information)
+     * @description: zh - 展示用户的信息
+     * @description: en - Display user information
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/5 2:46 下午
+     * @return com.zfile.code.entity.user.vo.ShowUser
+     */
+    ShowUser show();
 }
