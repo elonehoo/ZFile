@@ -2,6 +2,7 @@ package com.zfile.code.entity.file.vo;
 
 import cn.hutool.core.date.DateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xiaoTools.core.IdUtil.IdUtil;
 import lombok.*;
 
 import java.util.Date;
@@ -17,6 +18,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FileVO {
+
+    private String id;
     /**
      * 文件的名字
      */
@@ -37,4 +40,12 @@ public class FileVO {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date dateTime;
+
+    public FileVO(String fileName, String fileType, String fileSize, Date dateTime) {
+        this.id = IdUtil.fastSimpleUUID();
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.fileSize = fileSize;
+        this.dateTime = dateTime;
+    }
 }
