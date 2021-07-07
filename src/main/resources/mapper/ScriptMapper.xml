@@ -9,4 +9,14 @@
         WHERE
             script.category_id = #{categoryId};
     </delete>
+
+    <select id="getByCategoryId" resultType="com.zfile.code.entity.script.vo.RunScript">
+        SELECT
+            script.digit AS digit,
+            script.script AS script
+        FROM
+            tbl_script AS script
+        WHERE script.category_id = #{categoryId}
+        ORDER BY digit ASC;
+    </select>
 </mapper>

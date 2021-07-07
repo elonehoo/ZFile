@@ -1,6 +1,7 @@
 package com.zfile.code.controller.script;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.hutool.core.util.RuntimeUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.category.dto.SaveCategory;
 import com.zfile.code.entity.script.dto.SaveScript;
@@ -60,10 +61,26 @@ public class ScriptController {
      * @param saveScript: 用户的脚本模块
      * @return com.xiaoTools.core.result.Result
     */
-//    @SaCheckLogin
+    @SaCheckLogin
     @PostMapping("/save")
     @Operation(summary = "保存用户的脚本模块")
     public Result save(@RequestBody SaveScript saveScript){
         return scriptStents.save(saveScript,request.getRequestURI());
+    }
+
+    /**
+     * [用户输入脚本，并且运行](The user enters the script and runs it)
+     * @description: zh - 用户输入脚本，并且运行
+     * @description: en - The user enters the script and runs it
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/7 7:15 下午
+     * @param shell: shell命令
+     * @return com.xiaoTools.core.result.Result
+    */
+    @GetMapping("/run")
+    @Operation(summary = "用户输入脚本，并且运行")
+    public Result run(@RequestParam String shell){
+        return scriptStents.run(shell,request.getRequestURI());
     }
 }

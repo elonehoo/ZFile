@@ -1,6 +1,7 @@
 package com.zfile.code.stents.impl;
 
 import cn.hutool.core.collection.ListUtil;
+import cn.hutool.core.util.RuntimeUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.category.dto.SaveCategory;
 import com.zfile.code.entity.category.po.Category;
@@ -11,6 +12,8 @@ import com.zfile.code.service.CategoryService;
 import com.zfile.code.service.ScriptService;
 import com.zfile.code.stents.ScriptStents;
 import com.zfile.code.util.BeanUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,6 +29,8 @@ import java.util.List;
  */
 @Service
 public class ScriptStentsImpl implements ScriptStents {
+
+    private final Logger log = LoggerFactory.getLogger(ScriptStentsImpl.class);
 
     @Resource
     private CategoryService categoryService;
@@ -91,4 +96,23 @@ public class ScriptStentsImpl implements ScriptStents {
                 new Result().result200("保存脚本成功",path) :
                 new Result().result500("保存脚本失败",path);
     }
+
+    /**
+     * [用户输入脚本，进行运行。](The user enters the script and runs it.)
+     * @description: zh - 用户输入脚本，进行运行。
+     * @description: en - The user enters the script and runs it.
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/7 7:11 下午
+     * @param shell: shell语句，如下简称脚本
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result run(String shell, String path) {
+        //不判断脚本是否正确，直接运行脚本，「有问题，系统会判断」
+        return new Result().result200(RuntimeUtil.execForStr(shell),path);
+    }
+
+
 }

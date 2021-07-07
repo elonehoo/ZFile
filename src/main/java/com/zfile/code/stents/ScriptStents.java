@@ -39,4 +39,17 @@ public interface ScriptStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result save(SaveScript saveScript, String path);
+
+    /**
+     * [用户输入脚本，进行运行。](The user enters the script and runs it.)
+     * @description: zh - 用户输入脚本，进行运行。
+     * @description: en - The user enters the script and runs it.
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/7 7:11 下午
+     * @param shell: shell语句，如下简称脚本
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result run(String shell, String path);
 }

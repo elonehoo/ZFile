@@ -3,6 +3,9 @@ package com.zfile.code.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zfile.code.entity.category.po.Category;
 import com.zfile.code.entity.script.po.Script;
+import com.zfile.code.entity.script.vo.RunScript;
+
+import java.util.List;
 
 /**
  * [脚本类别服务层](Script category service layer)
@@ -25,4 +28,16 @@ public interface ScriptService extends IService<Script> {
      * @return boolean
     */
     boolean removeByCategoryId(String categoryId);
+
+    /**
+     * [通过脚本的类别查找类别](Find categories through categories of scripts)
+     * @description: zh - 通过脚本的类别查找类别
+     * @description: en - Find categories through categories of scripts
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/7 10:54 上午
+     * @param categoryId: 脚本类别的序号
+     * @return java.util.List<com.zfile.code.entity.script.vo.RunScript>
+    */
+    List<RunScript> getByCategoryId(String categoryId);
 }
