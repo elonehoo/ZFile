@@ -70,4 +70,17 @@ public interface FileStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result upload(List<MultipartFile> files, Folder folder, String path);
+
+    /**
+     * [读取指定文件的内容](Read the contents of the specified file)
+     * @description: zh - 读取指定文件的内容
+     * @description: en - Read the contents of the specified file
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/7 7:46 下午
+     * @param filePath: 读取文件的内容
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result read(String filePath, String path);
 }

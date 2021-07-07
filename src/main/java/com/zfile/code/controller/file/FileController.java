@@ -209,4 +209,23 @@ public class FileController {
         }
     }
 
+    /**
+     * [打开文件](Open file)
+     * @description: zh - 打开文件
+     * @description: en - Open file
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/7 7:53 下午
+     * @param filePath: 打开文件的路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    @GetMapping("/read")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),
+    })
+    @Operation(summary = "打开文件")
+    public Result read(@RequestParam String filePath){
+        return fileStents.read(filePath,request.getRequestURI());
+    }
+
 }

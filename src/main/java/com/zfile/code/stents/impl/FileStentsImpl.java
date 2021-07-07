@@ -1,6 +1,7 @@
 package com.zfile.code.stents.impl;
 
 import cn.hutool.core.io.file.FileNameUtil;
+import cn.hutool.core.io.file.FileReader;
 import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.result.Result;
 import com.xiaoTools.core.strUtil.StrUtil;
@@ -163,5 +164,22 @@ public class FileStentsImpl implements FileStents {
             logService.log("将" + files + "文件上传到「" + folder.getRootPath() + "」失败");
             return new Result().result414("文件上传失败",path);
         }
+    }
+
+    /**
+     * [读取指定文件的内容](Read the contents of the specified file)
+     * @description: zh - 读取指定文件的内容
+     * @description: en - Read the contents of the specified file
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/7 7:46 下午
+     * @param filePath: 读取文件的内容
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result read(String filePath, String path) {
+        FileReader fileReader = new FileReader(filePath);
+        return new Result().result200(fileReader.readString(),path);
     }
 }
