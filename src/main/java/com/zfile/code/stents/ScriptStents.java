@@ -2,6 +2,7 @@ package com.zfile.code.stents;
 
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.category.dto.SaveCategory;
+import com.zfile.code.entity.script.dto.RunsScript;
 import com.zfile.code.entity.script.dto.SaveScript;
 
 /**
@@ -52,4 +53,17 @@ public interface ScriptStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result run(String shell, String path);
+
+    /**
+     * [根据类别运行脚本](Run scripts by category)
+     * @description: zh - 根据类别运行脚本
+     * @description: en - Run scripts by category
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/8 11:45 上午
+     * @param runsScript: 类别的序号
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result runs(RunsScript runsScript, String path);
 }

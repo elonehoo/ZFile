@@ -4,6 +4,8 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.file.FileNameUtil;
+import cn.hutool.core.io.file.FileReader;
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.SmUtil;
@@ -72,9 +74,21 @@ class SpringBootZfileApplicationTests {
     private Encryption aes;
 
     /**
+     * 测试13
+     * 测试模块：读取文件
+     * 测试结果：ok
+     */
+    @Test
+    void contextLoads_12(){
+        String filePath = "/Users/huchengye/Downloads/日志/胡成晔的日志.md";
+        FileReader fileReader = new FileReader(filePath);
+        System.out.println(fileReader.readString());
+    }
+
+    /**
      * 测试12
      * 测试模块：文件的时间和大小问题
-     * 测试结果：unknown
+     * 测试结果：ok
      */
     @Test
     void contextLoads_11(){

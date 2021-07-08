@@ -5,9 +5,11 @@ import cn.hutool.core.util.RuntimeUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.category.dto.SaveCategory;
 import com.zfile.code.entity.category.po.Category;
+import com.zfile.code.entity.script.dto.RunsScript;
 import com.zfile.code.entity.script.dto.SaveScript;
 import com.zfile.code.entity.script.dto.ScriptValue;
 import com.zfile.code.entity.script.po.Script;
+import com.zfile.code.entity.script.vo.RunScript;
 import com.zfile.code.service.CategoryService;
 import com.zfile.code.service.ScriptService;
 import com.zfile.code.stents.ScriptStents;
@@ -112,6 +114,36 @@ public class ScriptStentsImpl implements ScriptStents {
     public Result run(String shell, String path) {
         //不判断脚本是否正确，直接运行脚本，「有问题，系统会判断」
         return new Result().result200(RuntimeUtil.execForStr(shell),path);
+    }
+
+    /**
+     * [根据类别运行脚本](Run scripts by category)
+     * @description: zh - 根据类别运行脚本
+     * @description: en - Run scripts by category
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/8 11:45 上午
+     * @param runsScript: 类别的序号
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result runs(RunsScript runsScript, String path) {
+        List<RunScript> scripts = scriptService.getByCategoryId(runsScript.getCategoryId());
+
+        log.debug("---> {} ","输出脚本开始");
+        for (RunScript script : scripts) {
+            log.info("===> {}",script);
+        }
+        log.debug("---> {} ","输出脚本结束");
+
+        log.debug("---> {}","运行脚本开始");
+        for (RunScript script : scripts) {
+            String exec = RuntimeUtil.execForStr(script.getScript());
+            log.info( script.getDigit() + "---> {}",exec);
+        }
+        log.debug("---> {}","运行脚本结束");
+        return new Result().result200("运行的脚本成功了吗",path);
     }
 
 

@@ -1,9 +1,9 @@
 package com.zfile.code.controller.script;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
-import cn.hutool.core.util.RuntimeUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.category.dto.SaveCategory;
+import com.zfile.code.entity.script.dto.RunsScript;
 import com.zfile.code.entity.script.dto.SaveScript;
 import com.zfile.code.stents.ScriptStents;
 import io.swagger.annotations.Api;
@@ -78,9 +78,29 @@ public class ScriptController {
      * @param shell: shell命令
      * @return com.xiaoTools.core.result.Result
     */
+    @SaCheckLogin
     @GetMapping("/run")
     @Operation(summary = "用户输入脚本，并且运行")
     public Result run(@RequestParam String shell){
         return scriptStents.run(shell,request.getRequestURI());
     }
+
+    /**
+     * [执行保存好的脚本集合，安装软件，暂时不可以用](Execute the saved script set and install the software. It is temporarily unavailable)
+     * @description: zh - 执行保存好的脚本集合，安装软件，暂时不可以用
+     * @description: en - Execute the saved script set and install the software. It is temporarily unavailable
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/8 1:03 下午
+     * @param runsScript: 运行脚本集合的类别序号
+     * @return com.xiaoTools.core.result.Result
+    */
+    @SaCheckLogin
+    @PostMapping("/runs")
+    @Operation(summary = "执行保存好的脚本集合，安装软件，暂时不可以用")
+    public Result runs(@RequestBody RunsScript runsScript){
+        return scriptStents.runs(runsScript,request.getRequestURI());
+    }
+
+
 }
