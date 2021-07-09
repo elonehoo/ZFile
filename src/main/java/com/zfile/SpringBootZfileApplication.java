@@ -4,8 +4,15 @@ import com.zfile.code.resolver.CustomMultipartResolver;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.server.ConfigurableWebServerFactory;
+import org.springframework.boot.web.server.ErrorPage;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartResolver;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 程序入口

@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -78,5 +79,11 @@ public class BaseController {
         return baseStents.getSystemInfo(request.getRequestURI());
     }
 
+    @Operation(summary = "跳转到index页面")
+    @RequestMapping("/zfile/**")
+    public ModelAndView getNeMoInTree() {
 
+        System.out.println("=========跳转到index页面===================");
+        return new ModelAndView("index");
+    }
 }
