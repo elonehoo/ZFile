@@ -1,0 +1,1 @@
+System.register([],(function(t){"use strict";return{execute:function(){var e,r;t("M",void 0),(r=e||(e=t("M",{}))).VERTICAL="vertical",r.HORIZONTAL="horizontal";t("m",{mode:{type:String,default:e.HORIZONTAL}})}}}));

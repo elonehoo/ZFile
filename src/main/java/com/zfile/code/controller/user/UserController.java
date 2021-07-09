@@ -1,6 +1,7 @@
 package com.zfile.code.controller.user;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.stp.StpUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.user.dto.LoginUser;
 import com.zfile.code.entity.user.dto.RegisterUser;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**

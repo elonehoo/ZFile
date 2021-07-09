@@ -1,5 +1,6 @@
 package com.zfile.code.stents.impl;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -169,8 +170,10 @@ public class UserStentsImpl implements UserStents {
             logService.log("用户登陆失败");
             return new Result().result503("账号或者密码错误，无法登陆",path);
         }
+        log.warn("用户的id --> {}" , loginUser.getId());
         //调用 sa-token 的登陆操作
         StpUtil.login(loginUser.getId());
+        log.debug("用户是否登陆 --> {}",StpUtil.isLogin());
         logService.log("用户登陆");
         return new Result().result200("登陆成功",path);
     }
@@ -187,7 +190,11 @@ public class UserStentsImpl implements UserStents {
      */
     @Override
     public Result signOut(String path) {
-        StpUtil.logoutByTokenValue(StpUtil.getTokenValue());
+        log.debug("用户是否登陆 --> {}",StpUtil.isLogin());
+        SaTokenInfo info = StpUtil.getTokenInfo();
+        log.debug("用户的信息 --> {}",info);
+        log.warn("用户登陆的值--> {}",StpUtil.getTokenValue());
+        StpUtil.logout();
         logService.log("用户退出");
         return new Result().result200("退出成功",path);
     }

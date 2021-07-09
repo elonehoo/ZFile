@@ -80,9 +80,9 @@ class SpringBootZfileApplicationTests {
      */
     @Test
     void contextLoads_12(){
-        String filePath = "/Users/huchengye/Downloads/日志/胡成晔的日志.md";
+        /*String filePath = "/Users/huchengye/Downloads/日志/胡成晔的日志.md";
         FileReader fileReader = new FileReader(filePath);
-        System.out.println(fileReader.readString());
+        System.out.println(fileReader.readString());*/
     }
 
     /**
