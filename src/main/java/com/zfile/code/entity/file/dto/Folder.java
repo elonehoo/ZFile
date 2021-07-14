@@ -1,5 +1,6 @@
 package com.zfile.code.entity.file.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -32,6 +33,7 @@ public class Folder implements Serializable {
     /**
      * 文件上传路径
      */
+    @ApiModelProperty( value = "文件上传路径" )
     private String rootPath;
 
 }

@@ -4,8 +4,10 @@ import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.file.dto.Folder;
 import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Touch;
+import com.zfile.code.entity.file.dto.Write;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -83,4 +85,17 @@ public interface FileStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result read(String filePath, String path);
+
+    /**
+     * [写入文本内容](Write text content)
+     * @description: zh - 写入文本内容
+     * @description: en - Write text content
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/14 3:22 下午
+     * @param write: 写入内容的实体类
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result write(Write write, String path);
 }

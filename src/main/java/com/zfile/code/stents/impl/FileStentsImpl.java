@@ -2,12 +2,14 @@ package com.zfile.code.stents.impl;
 
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.io.file.FileReader;
+import cn.hutool.core.io.file.FileWriter;
 import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
 import com.xiaoTools.core.result.Result;
 import com.xiaoTools.core.strUtil.StrUtil;
 import com.zfile.code.entity.file.dto.Folder;
 import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Touch;
+import com.zfile.code.entity.file.dto.Write;
 import com.zfile.code.service.LogService;
 import com.zfile.code.stents.FileStents;
 import com.zfile.code.util.FileTemporaryUtil;
@@ -181,5 +183,23 @@ public class FileStentsImpl implements FileStents {
     public Result read(String filePath, String path) {
         FileReader fileReader = new FileReader(filePath);
         return new Result().result200(fileReader.readString(),path);
+    }
+
+    /**
+     * [写入文本内容](Write text content)
+     * @description: zh - 写入文本内容
+     * @description: en - Write text content
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/14 3:22 下午
+     * @param write: 写入内容的实体类
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result write(Write write, String path) {
+        FileWriter fileWriter = new FileWriter(write.getFilePath());
+        fileWriter.write(write.getContent());
+        return new Result().result200("写入完成",path);
     }
 }

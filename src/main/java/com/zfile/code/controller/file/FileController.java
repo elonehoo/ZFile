@@ -1,10 +1,12 @@
 package com.zfile.code.controller.file;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.hutool.core.io.FileTypeUtil;
 import com.xiaoTools.core.result.Result;
 import com.zfile.code.entity.file.dto.Folder;
 import com.zfile.code.entity.file.dto.Mkdir;
 import com.zfile.code.entity.file.dto.Touch;
+import com.zfile.code.entity.file.dto.Write;
 import com.zfile.code.stents.FileStents;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -225,7 +228,70 @@ public class FileController {
     })
     @Operation(summary = "打开文件")
     public Result read(@RequestParam String filePath){
-        return fileStents.read(filePath,request.getRequestURI());
+        return fileStents.read(filePath, request.getRequestURI());
+    }
+
+    /**
+     * [打开图片](Open picture)
+     * @description: zh - 打开图片
+     * @description: en - Open picture
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/14 2:58 下午
+     * @param filePath: 文件地址
+     * @param response: 返回设置
+    */
+    @GetMapping("/readImage")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),
+    })
+    @Operation(summary = "打开图片")
+    public void readImage(@RequestParam String filePath,
+                          HttpServletResponse response){
+        //判断类型
+        String type = FileTypeUtil.getType(cn.hutool.core.io.FileUtil.file(filePath));
+        if ( ( "jpg".equals(type) ) || ( "gif".equals(type) ) || ( "png".equals(type) ) || ( "bmp".equals(type) ) ) {
+            ServletOutputStream out = null;
+            FileInputStream ips = null;
+            try {
+                //获取图片存放路径
+                ips = new FileInputStream(new File(filePath));
+                response.setContentType("multipart/form-data");
+                out = response.getOutputStream();
+                //读取文件流
+                int len = 0;
+                byte[] buffer = new byte[1024 * 10];
+                while ((len = ips.read(buffer)) != -1){
+                    out.write(buffer,0,len);
+                }
+                out.flush();
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                try {
+                    out.close();
+                    ips.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * [将内容写入文本](Write content to text)
+     * @description: zh - 将内容写入文本
+     * @description: en - Write content to text
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/14 3:34 下午
+     * @param write: 写入文本的实体
+     * @return com.xiaoTools.core.result.Result
+    */
+    @PostMapping("/write")
+    @Operation(summary = "将内容写入文本")
+    public Result write(@RequestBody Write write){
+        return fileStents.write(write,request.getRequestURI());
     }
 
 }

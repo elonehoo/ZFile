@@ -3,8 +3,11 @@ package com.inet;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileTypeUtil;
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.io.file.FileReader;
+import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.core.util.HexUtil;
@@ -74,15 +77,38 @@ class SpringBootZfileApplicationTests {
     private Encryption aes;
 
     /**
+     * 测试15
+     * 测试模块：将文件写入信息
+     * 测试结果：error
+     */
+    @Test
+    void contextLoads_14(){
+        String filePath = "/Users/huchengye/Downloads/123.md";
+        FileWriter fileWriter = new FileWriter(filePath);
+        fileWriter.write("## 1231231");
+    }
+
+    /**
+     * 测试14
+     * 测试模块：判断后缀为大写的文件是否会自动转为小写
+     * 测试结果：OK
+     */
+    @Test
+    void contextLoads_13(){
+        String filePath = "/Users/huchengye/Downloads/123.JPG";
+        System.out.println(FileTypeUtil.getType(cn.hutool.core.io.FileUtil.file(filePath)));
+    }
+
+    /**
      * 测试13
      * 测试模块：读取文件
      * 测试结果：ok
      */
     @Test
     void contextLoads_12(){
-        /*String filePath = "/Users/huchengye/Downloads/日志/胡成晔的日志.md";
-        FileReader fileReader = new FileReader(filePath);
-        System.out.println(fileReader.readString());*/
+//        String filePath = "/Users/huchengye/Downloads/123.jpg";
+//        FileReader fileReader = new FileReader(filePath);
+//        System.out.println(fileReader.readString());
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.zfile.code.entity.file.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -29,10 +30,12 @@ public class Touch implements Serializable {
     /**
      * 地址
      */
+    @ApiModelProperty( value = "地址" )
     private String address;
 
     /**
      * 文件名字
      */
+    @ApiModelProperty( value = "文件名字" )
     private String fileName;
 }

@@ -1,5 +1,6 @@
 package com.zfile.code.entity.file.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -29,10 +30,12 @@ public class Mkdir implements Serializable {
     /**
      * 创建文件夹的地址
      */
+    @ApiModelProperty( value = "创建文件夹的地址" )
     private String address;
 
     /**
      * 创建的文件夹的名字
      */
+    @ApiModelProperty( value = "创建的文件夹的名字" )
     private String fileName;
 }

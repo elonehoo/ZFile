@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.FileNotFoundException;
 
 /**
  * [定义全局异常类](Define global exception classes)
@@ -95,6 +96,23 @@ public class GlobalException {
     public Result mailException(MailException e, HttpServletRequest request){
         log.error(e.toString());
         return new Result().result403("邮箱产生了错误，可以检查您输入的邮箱是否拥有操作的服务",request.getRequestURI());
+    }
+
+    /**
+     * [产生了未找到的文件的地址](The address of the file that was not found was generated)
+     * @description: zh - 产生了未找到的文件的地址
+     * @description: en - The address of the file that was not found was generated
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/14 11:45 上午
+     * @param e: 异常处理
+     * @param request: 请求
+     * @return com.xiaoTools.core.result.Result
+    */
+    @ExceptionHandler(value = FileNotFoundException.class)
+    public Result fileNotFoundException(MailException e, HttpServletRequest request){
+        log.error(e.toString());
+        return new Result().result404("您输入的地址并没有找到文件夹哦",request.getRequestURI());
     }
 
     /**
