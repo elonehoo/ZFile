@@ -105,8 +105,8 @@ public class FileController {
     @SaCheckLogin
     @DeleteMapping("/remove")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "removePath",value = "删除文件的目录",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),
-            @ApiImplicitParam(name = "removeName",value = "删除的文件的名字",dataTypeClass = String[].class,dataType = "String[]",paramType = "query",defaultValue = ""),
+            @ApiImplicitParam(name = "removePath",value = "删除文件的目录",dataTypeClass = String.class,dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name = "removeName",value = "删除的文件的名字",dataTypeClass = String[].class,dataType = "String[]",paramType = "query"),
     })
     @Operation(summary = "删除文件和文件夹")
     public Result remove(@RequestParam String removePath,
@@ -178,7 +178,7 @@ public class FileController {
     */
     @GetMapping("/download")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "downPath",value = "下载文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),
+            @ApiImplicitParam(name = "downPath",value = "下载文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query"),
     })
     @Operation(summary = "下载文件")
     public void download(@RequestParam String downPath, HttpServletResponse response){
@@ -224,7 +224,7 @@ public class FileController {
     */
     @GetMapping("/read")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),
+            @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query"),
     })
     @Operation(summary = "打开文件")
     public Result read(@RequestParam String filePath){
@@ -243,23 +243,24 @@ public class FileController {
     */
     @GetMapping("/readImage")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query",defaultValue = ""),
+            @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query"),
     })
     @Operation(summary = "打开图片")
     public void readImage(@RequestParam String filePath,
                           HttpServletResponse response){
         //判断类型
+        //设置图片的后缀模式
         String type = FileTypeUtil.getType(cn.hutool.core.io.FileUtil.file(filePath));
         if ( ( "jpg".equals(type) ) || ( "gif".equals(type) ) || ( "png".equals(type) ) || ( "bmp".equals(type) ) ) {
             ServletOutputStream out = null;
             FileInputStream ips = null;
             try {
                 //获取图片存放路径
-                ips = new FileInputStream(new File(filePath));
+                ips = new FileInputStream(filePath);
                 response.setContentType("multipart/form-data");
                 out = response.getOutputStream();
                 //读取文件流
-                int len = 0;
+                int len;
                 byte[] buffer = new byte[1024 * 10];
                 while ((len = ips.read(buffer)) != -1){
                     out.write(buffer,0,len);
@@ -269,6 +270,7 @@ public class FileController {
                 e.printStackTrace();
             }finally {
                 try {
+                    assert out != null;
                     out.close();
                     ips.close();
                 } catch (IOException e) {
