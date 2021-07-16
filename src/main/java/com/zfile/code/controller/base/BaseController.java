@@ -94,6 +94,15 @@ public class BaseController {
         return baseStents.is(request.getRequestURI());
     }
 
+    /**
+     * [跳转到index页面](Jump to the index page)
+     * @description: zh - 跳转到index页面
+     * @description: en - Jump to the index page
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/16 11:20 上午
+     * @return org.springframework.web.servlet.ModelAndView
+    */
     @Operation(summary = "跳转到index页面")
     @RequestMapping("/zfile/**")
     public ModelAndView getNeMoInTree() {
