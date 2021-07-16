@@ -124,6 +124,7 @@ public class FileController {
      * @param folder: 文件
      * @return com.xiaoTools.core.result.Result
     */
+    @SaCheckLogin
     @PostMapping("/upload")
     @Operation(summary = "上传文件")
     public Result upload(@RequestPart List<MultipartFile> files, Folder folder){
@@ -139,7 +140,8 @@ public class FileController {
      * @since 2021/6/29 9:39 下午
      * @return com.xiaoTools.core.result.Result
     */
-    @GetMapping("/showUpload")
+    @SaCheckLogin
+    @GetMapping("/upload")
     @Operation(summary = "展示文件上传的百分比")
     public Result showUpload(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -158,6 +160,7 @@ public class FileController {
      * @param request: 上传进度
      * @return com.xiaoTools.core.result.Result
     */
+    @SaCheckLogin
     @DeleteMapping("/upload")
     @Operation(summary = "删除上传的文件进度")
     public Result delete(HttpServletRequest request){
@@ -176,6 +179,7 @@ public class FileController {
      * @param downPath: 下载文件的路径
      * @param response: 返回模块
     */
+    @SaCheckLogin
     @GetMapping("/download")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "downPath",value = "下载文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query"),
@@ -222,6 +226,7 @@ public class FileController {
      * @param filePath: 打开文件的路径
      * @return com.xiaoTools.core.result.Result
     */
+    @SaCheckLogin
     @GetMapping("/read")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query"),
@@ -241,6 +246,7 @@ public class FileController {
      * @param filePath: 文件地址
      * @param response: 返回设置
     */
+    @SaCheckLogin
     @GetMapping("/readImage")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "filePath",value = "打开文件的路径",dataTypeClass = String.class,dataType = "String",paramType = "query"),
@@ -290,6 +296,7 @@ public class FileController {
      * @param write: 写入文本的实体
      * @return com.xiaoTools.core.result.Result
     */
+    @SaCheckLogin
     @PostMapping("/write")
     @Operation(summary = "将内容写入文本")
     public Result write(@RequestBody Write write){

@@ -83,9 +83,9 @@ class SpringBootZfileApplicationTests {
      */
     @Test
     void contextLoads_14(){
-        String filePath = "/Users/huchengye/Downloads/123.md";
-        FileWriter fileWriter = new FileWriter(filePath);
-        fileWriter.write("## 1231231");
+//        String filePath = "/Users/huchengye/Downloads/123.md";
+//        FileWriter fileWriter = new FileWriter(filePath);
+//        fileWriter.write("## 1231231");
     }
 
     /**
@@ -95,8 +95,8 @@ class SpringBootZfileApplicationTests {
      */
     @Test
     void contextLoads_13(){
-        String filePath = "/Users/huchengye/Downloads/123.JPG";
-        System.out.println(FileTypeUtil.getType(cn.hutool.core.io.FileUtil.file(filePath)));
+//        String filePath = "/Users/huchengye/Downloads/123.JPG";
+//        System.out.println(FileTypeUtil.getType(cn.hutool.core.io.FileUtil.file(filePath)));
     }
 
     /**

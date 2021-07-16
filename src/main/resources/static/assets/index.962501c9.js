@@ -1,1 +1,0 @@
-import{m as e}from"./_utils.29a066cb.js";import{P as r}from"./index.a4cb9473.js";import{c as s,W as a,X as o,Z as t,e as i}from"./vendor.37e0cd1a.js";var m=s({name:"Menu",props:e,setup:()=>({prefixer:`${r}_menu`})});m.render=function(e,r,s,m,p,f){return a(),o("div",{class:[e.prefixer]},[t("ul",{class:[`${e.prefixer}-${e.mode}`]},[i(e.$slots,"default")],2)],2)};export default m;

@@ -53,11 +53,12 @@ public interface FileStents {
      * @version: V1.0
      * @author XiaoXunYao
      * @since 2021/6/28 9:48 上午
-     * @param removePath: 删除文件的实体类
+     * @param removePath: 删除文件的路径
+     * @param removeNames: 删除文件的名字
      * @param path: URL路径
      * @return com.xiaoTools.core.result.Result
     */
-    Result remove(String removePath,String[] removeName, String path);
+    Result remove(String removePath,String[] removeNames, String path);
 
     /**
      * [上传文件](Upload file)
