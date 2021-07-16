@@ -159,6 +159,7 @@ public class UserStentsImpl implements UserStents {
      */
     @Override
     public Result login(LoginUser user, String path) {
+        log.debug("登陆操作");
         //0. 将账号进行sm4加密
         //1. 将密码进行md5加密
         //2. 进行数据库查询

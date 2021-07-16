@@ -106,6 +106,7 @@ public class BaseStentsImpl implements BaseStents {
      */
     @Override
     public Result is(String path) {
+        log.debug("判断用户是否在登陆中");
         return new Result().result200(StpUtil.isLogin(),path);
     }
 }
