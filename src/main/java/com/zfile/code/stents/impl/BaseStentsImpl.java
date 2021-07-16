@@ -1,5 +1,6 @@
 package com.zfile.code.stents.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import com.xiaoTools.core.fileUtil.fileUtil.FileUtil;
@@ -91,6 +92,21 @@ public class BaseStentsImpl implements BaseStents {
     @Override
     public Result getSystemInfo(String path) {
         return new Result().result200(new SystemInfo(),path);
+    }
+
+    /**
+     * [判断用户是否在登陆中](Judge whether the user is logging in)
+     * @description: zh - 判断用户是否在登陆中
+     * @description: en - Judge whether the user is logging in
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/16 11:04 上午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+     */
+    @Override
+    public Result is(String path) {
+        return new Result().result200(StpUtil.isLogin(),path);
     }
 }
 

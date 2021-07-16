@@ -79,6 +79,21 @@ public class BaseController {
         return baseStents.getSystemInfo(request.getRequestURI());
     }
 
+    /**
+     * [判断用户是否在登陆状态](Judge whether the user is in login status)
+     * @description: zh - 判断用户是否在登陆状态
+     * @description: en - Judge whether the user is in login status
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/16 11:06 上午
+     * @return com.xiaoTools.core.result.Result
+    */
+    @GetMapping("/is")
+    @Operation(summary = "判断用户是否在登陆状态")
+    public Result is(){
+        return baseStents.is(request.getRequestURI());
+    }
+
     @Operation(summary = "跳转到index页面")
     @RequestMapping("/zfile/**")
     public ModelAndView getNeMoInTree() {

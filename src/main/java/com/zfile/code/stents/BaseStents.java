@@ -40,4 +40,16 @@ public interface BaseStents {
      * @return com.xiaoTools.core.result.Result
     */
     Result getSystemInfo(String path);
+
+    /**
+     * [判断用户是否在登陆中](Judge whether the user is logging in)
+     * @description: zh - 判断用户是否在登陆中
+     * @description: en - Judge whether the user is logging in
+     * @version: V1.0
+     * @author XiaoXunYao
+     * @since 2021/7/16 11:04 上午
+     * @param path: URL路径
+     * @return com.xiaoTools.core.result.Result
+    */
+    Result is(String path);
 }
