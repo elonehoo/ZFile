@@ -97,8 +97,6 @@ public class BaseController {
     @Operation(summary = "跳转到index页面")
     @RequestMapping("/zfile/**")
     public ModelAndView getNeMoInTree() {
-
-        System.out.println("=========跳转到index页面===================");
         return new ModelAndView("index");
     }
 }
